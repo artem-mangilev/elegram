@@ -1,15 +1,14 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { FormsModule } from '@angular/forms'
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core'
 
-import { PageNotFoundComponent } from './components/';
-import { WebviewDirective } from './directives/';
-import { FormsModule } from '@angular/forms';
+import { TextInputComponent } from './text-input/text-input.component'
 
 @NgModule({
-  declarations: [PageNotFoundComponent, WebviewDirective],
+  declarations: [TextInputComponent],
   imports: [CommonModule, TranslateModule, FormsModule],
-  exports: [TranslateModule, WebviewDirective, FormsModule]
+  exports: [TranslateModule, FormsModule],
 })
 export class SharedModule {}
