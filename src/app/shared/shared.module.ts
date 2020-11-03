@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms'
 
 import { TranslateModule } from '@ngx-translate/core'
 
-import { TextInputComponent } from './text-input/text-input.component'
+import { InputFieldComponent } from './input-field/input-field.component'
 
 @NgModule({
-  declarations: [TextInputComponent],
+  declarations: [InputFieldComponent],
   imports: [CommonModule, TranslateModule, FormsModule],
-  exports: [TranslateModule, FormsModule],
+  exports: [TranslateModule, FormsModule, InputFieldComponent],
 })
 export class SharedModule {}

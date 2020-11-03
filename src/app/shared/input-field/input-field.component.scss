@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  position: relative;
+}
+
+input {
+  $active-color: #4ea4f6;
+
+  width: 100%;
+  height: 43px;
+  padding: 0 1rem;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  caret-color: $active-color;
+  transition: all 0.2s;
+
+  &:focus,
+  &:not(:placeholder-shown) {
+    border: 1.5px solid $active-color;
+
+    & + label {
+      transform: translateY(-220%);
+      padding: 0 5px;
+      left: 0.75rem;
+      font-size: 0.8rem;
+      color: $active-color;
+    }
+  }
+}
+
+label {
+  user-select: none;
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  transition: all 0.2s;
+  background-color: #fff;
+  color: #9e9e9e;
+  cursor: text;
+}
