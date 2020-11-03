@@ -7,3 +7,15 @@
   placeholder=" "
 />
 <label [for]="id">{{ label }}</label>
+<img
+  class="eye"
+  *ngIf="passwordHidden"
+  (click)="showPassword()"
+  src="../../../assets/icons/eye1_svg.svg"
+/>
+<img
+  class="eye"
+  *ngIf="!passwordHidden"
+  (click)="hidePassword()"
+  src="../../../assets/icons/eye2_svg.svg"
+/>
