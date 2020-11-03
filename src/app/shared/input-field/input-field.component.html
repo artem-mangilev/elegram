@@ -1,2 +1,9 @@
-<input id="field" placeholder=" " />
-<label for="field">Some text</label>
+<input
+  [type]="type"
+  [id]="id"
+  [value]="value"
+  [class.error]="status === 'error'"
+  [class.success]="status === 'success'"
+  placeholder=" "
+/>
+<label [for]="id">{{ label }}</label>

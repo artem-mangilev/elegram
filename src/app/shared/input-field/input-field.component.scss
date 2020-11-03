@@ -5,6 +5,7 @@
 
 input {
   $active-color: #4ea4f6;
+  $error-color: #ea605d;
 
   width: 100%;
   height: 43px;
@@ -25,6 +26,15 @@ input {
       font-size: 0.8rem;
       color: $active-color;
     }
+
+    &.error + label {
+      color: $error-color;
+    }
+  }
+
+  &.error {
+    border: 1.5px solid $error-color;
+    caret-color: $error-color;
   }
 }
 
