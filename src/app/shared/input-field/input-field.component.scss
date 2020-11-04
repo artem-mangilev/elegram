@@ -24,26 +24,31 @@ input {
     display: none;
   }
 
-  &:focus,
-  &:not(:placeholder-shown) {
-    border: 1.5px solid $active-color;
+  &:focus {
+    border: 2px solid $active-color;
 
     & + label {
-      transform: translateY(-220%);
-      padding: 0 5px;
-      left: 0.75rem;
-      font-size: 0.8rem;
       color: $active-color;
     }
 
     &.error + label {
       color: $error-color;
     }
+
+    &.error {
+      border: 2px solid $error-color;
+      caret-color: $error-color;
+    }
   }
 
-  &.error {
-    border: 1.5px solid $error-color;
-    caret-color: $error-color;
+  &:focus,
+  &:not(:placeholder-shown) {
+    & + label {
+      transform: translateY(-220%);
+      padding: 0 5px;
+      left: 0.75rem;
+      font-size: 0.8rem;
+    }
   }
 }
 
