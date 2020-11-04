@@ -12,6 +12,8 @@ export class PasswordInputFieldComponent implements OnInit {
   @Input() value = ''
 
   @Output() passwordUpdate = new EventEmitter<string>()
+  @Output() passwordShow = new EventEmitter()
+  @Output() passwordHide = new EventEmitter()
 
   passwordHidden = true
   type: 'text' | 'password' = 'password'
@@ -21,11 +23,13 @@ export class PasswordInputFieldComponent implements OnInit {
   ngOnInit(): void {}
 
   showPassword(): void {
+    this.passwordShow.emit()
     this.passwordHidden = false
     this.type = 'text'
   }
 
   hidePassword(): void {
+    this.passwordHide.emit()
     this.passwordHidden = true
     this.type = 'password'
   }
