@@ -1,0 +1,20 @@
+:host {
+  display: block;
+}
+
+button {
+  // TODO: remove later
+  // width: 100%;
+  width: 300px;
+
+  height: 43px;
+  border-radius: 8px;
+  background-color: #50a2e9;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  &:hover {
+    background-color: #2c8fe4;
+  }
+}

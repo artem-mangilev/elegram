@@ -14,8 +14,13 @@ html {
   font-size: 12px;
 }
 
-input {
+input,
+button {
   &:focus {
     outline: none;
   }
+}
+
+button {
+  border: none;
 }
