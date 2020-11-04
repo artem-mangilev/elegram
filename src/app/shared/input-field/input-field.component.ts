@@ -13,25 +13,13 @@ export class InputFieldComponent implements OnInit {
   @Input() type: 'text' | 'number' | 'tel' | 'password' = 'text'
   @Input() value = ''
 
-  @Output() change = new EventEmitter<string>()
-
-  passwordHidden = true
+  @Output() update = new EventEmitter<string>()
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  onChange(value: string): void {
-    this.change.emit(value)
-  }
-
-  showPassword(): void {
-    this.passwordHidden = false
-    this.type = 'text'
-  }
-
-  hidePassword(): void {
-    this.passwordHidden = true
-    this.type = 'password'
+  onKeyUp(value: string): void {
+    this.update.emit(value)
   }
 }

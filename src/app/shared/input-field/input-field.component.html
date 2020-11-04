@@ -1,22 +1,11 @@
 <input
+  autocomplete="off"
+  placeholder=" "
   [type]="type"
   [id]="id"
   [value]="value"
   [class.error]="status === 'error'"
   [class.success]="status === 'success'"
-  placeholder=" "
-  (change)="onChange($event.value)"
+  (keyup)="onKeyUp($event.target.value)"
 />
 <label [for]="id">{{ label }}</label>
-<img
-  class="eye"
-  *ngIf="passwordHidden"
-  (click)="showPassword()"
-  src="../../../assets/icons/eye1_svg.svg"
-/>
-<img
-  class="eye"
-  *ngIf="!passwordHidden"
-  (click)="hidePassword()"
-  src="../../../assets/icons/eye2_svg.svg"
-/>
