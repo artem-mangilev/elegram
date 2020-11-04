@@ -5,6 +5,7 @@
   [class.error]="status === 'error'"
   [class.success]="status === 'success'"
   placeholder=" "
+  (change)="onChange($event.value)"
 />
 <label [for]="id">{{ label }}</label>
 <img

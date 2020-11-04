@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 
 @Component({
   selector: 'app-input-field',
@@ -13,11 +13,17 @@ export class InputFieldComponent implements OnInit {
   @Input() type: 'text' | 'number' | 'tel' | 'password' = 'text'
   @Input() value = ''
 
+  @Output() change = new EventEmitter<string>()
+
   passwordHidden = true
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  onChange(value: string): void {
+    this.change.emit(value)
+  }
 
   showPassword(): void {
     this.passwordHidden = false
