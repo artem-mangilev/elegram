@@ -19,6 +19,11 @@ input {
   caret-color: $active-color;
   transition: all 0.2s;
 
+  &::-ms-reveal,
+  &::-ms-clear {
+    display: none;
+  }
+
   &:focus,
   &:not(:placeholder-shown) {
     border: 1.5px solid $active-color;
