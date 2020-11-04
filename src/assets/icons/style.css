@@ -1,0 +1,301 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url('fonts/icomoon.eot?j6w1iu');
+  src: url('fonts/icomoon.eot?j6w1iu#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?j6w1iu') format('truetype'),
+    url('fonts/icomoon.woff?j6w1iu') format('woff'),
+    url('fonts/icomoon.svg?j6w1iu#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^='icon-'],
+[class*=' icon-'] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-check:before {
+  content: '\e900';
+}
+.icon-checks:before {
+  content: '\e901';
+}
+.icon-activesessions:before {
+  content: '\e902';
+}
+.icon-add:before {
+  content: '\e903';
+}
+.icon-addmember_filled:before {
+  content: '\e904';
+}
+.icon-adduser:before {
+  content: '\e905';
+}
+.icon-admin:before {
+  content: '\e906';
+}
+.icon-animals:before {
+  content: '\e907';
+}
+.icon-archive:before {
+  content: '\e908';
+}
+.icon-attach:before {
+  content: '\e909';
+}
+.icon-avatar_archivedchats:before {
+  content: '\e90a';
+}
+.icon-avatar_deletedaccount:before {
+  content: '\e90b';
+}
+.icon-avatar_savedmessages:before {
+  content: '\e90c';
+}
+.icon-back:before {
+  content: '\e90d';
+}
+.icon-camera:before {
+  content: '\e90e';
+}
+.icon-cameraadd:before {
+  content: '\e90f';
+}
+.icon-car:before {
+  content: '\e910';
+}
+.icon-channel:before {
+  content: '\e911';
+}
+.icon-channelviews:before {
+  content: '\e912';
+}
+.icon-chatsplaceholder:before {
+  content: '\e913';
+}
+.icon-check1:before {
+  content: '\e914';
+}
+.icon-checkbox:before {
+  content: '\e915';
+}
+.icon-checkboxblock:before {
+  content: '\e916';
+}
+.icon-checkboxempty:before {
+  content: '\e917';
+}
+.icon-checkboxon:before {
+  content: '\e918';
+}
+.icon-close:before {
+  content: '\e919';
+}
+.icon-copy:before {
+  content: '\e91a';
+}
+.icon-data:before {
+  content: '\e91b';
+}
+.icon-delete_filled:before {
+  content: '\e91c';
+}
+.icon-delete:before {
+  content: '\e91d';
+}
+.icon-deleteuser:before {
+  content: '\e91e';
+}
+.icon-document:before {
+  content: '\e91f';
+}
+.icon-down:before {
+  content: '\e920';
+}
+.icon-download:before {
+  content: '\e921';
+}
+.icon-eats:before {
+  content: '\e922';
+}
+.icon-edit:before {
+  content: '\e923';
+}
+.icon-eye1:before {
+  content: '\e924';
+}
+.icon-eye2:before {
+  content: '\e925';
+}
+.icon-flag:before {
+  content: '\e926';
+}
+.icon-forward:before {
+  content: '\e927';
+}
+.icon-FullScreen:before {
+  content: '\e928';
+}
+.icon-group:before {
+  content: '\e929';
+}
+.icon-help:before {
+  content: '\e92a';
+}
+.icon-info:before {
+  content: '\e92b';
+}
+.icon-lamp:before {
+  content: '\e92c';
+}
+.icon-language:before {
+  content: '\e92d';
+}
+.icon-largepause:before {
+  content: '\e92e';
+}
+.icon-largeplay:before {
+  content: '\e92f';
+}
+.icon-location:before {
+  content: '\e930';
+}
+.icon-lock:before {
+  content: '\e931';
+}
+.icon-logout:before {
+  content: '\e932';
+}
+.icon-menu:before {
+  content: '\e933';
+}
+.icon-message:before {
+  content: '\e934';
+}
+.icon-microphone:before {
+  content: '\e935';
+}
+.icon-more:before {
+  content: '\e936';
+}
+.icon-mute:before {
+  content: '\e937';
+}
+.icon-newchannel:before {
+  content: '\e938';
+}
+.icon-newchat_filled:before {
+  content: '\e939';
+}
+.icon-newgroup:before {
+  content: '\e93a';
+}
+.icon-newprivate:before {
+  content: '\e93b';
+}
+.icon-next:before {
+  content: '\e93c';
+}
+.icon-pause:before {
+  content: '\e93d';
+}
+.icon-permissions:before {
+  content: '\e93e';
+}
+.icon-phone:before {
+  content: '\e93f';
+}
+.icon-photo:before {
+  content: '\e940';
+}
+.icon-pin:before {
+  content: '\e941';
+}
+.icon-pinnedchat:before {
+  content: '\e942';
+}
+.icon-play:before {
+  content: '\e943';
+}
+.icon-radiooff:before {
+  content: '\e944';
+}
+.icon-radioon:before {
+  content: '\e945';
+}
+.icon-recent:before {
+  content: '\e946';
+}
+.icon-reply:before {
+  content: '\e947';
+}
+.icon-savedmessages:before {
+  content: '\e948';
+}
+.icon-search:before {
+  content: '\e949';
+}
+.icon-send:before {
+  content: '\e94a';
+}
+.icon-send2:before {
+  content: '\e94b';
+}
+.icon-sending:before {
+  content: '\e94c';
+}
+.icon-sendingerror:before {
+  content: '\e94d';
+}
+.icon-settings:before {
+  content: '\e94e';
+}
+.icon-smallscreen:before {
+  content: '\e94f';
+}
+.icon-smile:before {
+  content: '\e950';
+}
+.icon-sport:before {
+  content: '\e951';
+}
+.icon-stop:before {
+  content: '\e952';
+}
+.icon-unarchive:before {
+  content: '\e953';
+}
+.icon-unlock:before {
+  content: '\e954';
+}
+.icon-unmute:before {
+  content: '\e955';
+}
+.icon-unpin:before {
+  content: '\e956';
+}
+.icon-unread:before {
+  content: '\e957';
+}
+.icon-up:before {
+  content: '\e958';
+}
+.icon-user:before {
+  content: '\e959';
+}
+.icon-username:before {
+  content: '\e95a';
+}
