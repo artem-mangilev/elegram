@@ -17,7 +17,7 @@ input {
   border: 1px solid #dadce0;
   border-radius: 8px;
   caret-color: $active-color;
-  transition: all 0.2s;
+  transition: border-color 0.2s;
 
   &::-ms-reveal,
   &::-ms-clear {
@@ -25,7 +25,9 @@ input {
   }
 
   &:focus {
-    border: 2px solid $active-color;
+    border-color: $active-color;
+    border-width: 2px;
+    padding: 0 calc(1rem - 1px);
 
     & + label {
       color: $active-color;
@@ -36,7 +38,7 @@ input {
     }
 
     &.error {
-      border: 2px solid $error-color;
+      border-color: $error-color;
       caret-color: $error-color;
     }
   }
