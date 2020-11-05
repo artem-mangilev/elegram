@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { MatRippleModule } from '@angular/material/core'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 import { TranslateModule } from '@ngx-translate/core'
 
@@ -15,7 +16,13 @@ import { PrimaryButtonComponent } from './primary-button/primary-button.componen
     PasswordInputFieldComponent,
     PrimaryButtonComponent,
   ],
-  imports: [CommonModule, TranslateModule, FormsModule, MatRippleModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    FormsModule,
+    MatRippleModule,
+    MatProgressSpinnerModule,
+  ],
   exports: [
     TranslateModule,
     FormsModule,

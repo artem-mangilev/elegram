@@ -1,5 +1,6 @@
 :host {
   display: block;
+  position: relative;
 }
 
 button {
@@ -13,8 +14,17 @@ button {
   color: #fff;
   text-transform: uppercase;
   font-weight: 500;
+  cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:active {
     background-color: #2c8fe4;
   }
+}
+
+div {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
 }

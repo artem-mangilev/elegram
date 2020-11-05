@@ -1,1 +1,11 @@
-<button matRipple>Next</button>
+<button matRipple [matRippleColor]="rippleColor">
+  {{ value }}
+  <div>
+    <mat-spinner
+      *ngIf="status === 'loading'"
+      [diameter]="22"
+      [strokeWidth]="2"
+      [color]="'#ffffff'"
+    ></mat-spinner>
+  </div>
+</button>
