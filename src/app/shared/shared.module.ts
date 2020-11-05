@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
+import { MatRippleModule } from '@angular/material/core'
 
 import { TranslateModule } from '@ngx-translate/core'
 
@@ -14,7 +15,7 @@ import { PrimaryButtonComponent } from './primary-button/primary-button.componen
     PasswordInputFieldComponent,
     PrimaryButtonComponent,
   ],
-  imports: [CommonModule, TranslateModule, FormsModule],
+  imports: [CommonModule, TranslateModule, FormsModule, MatRippleModule],
   exports: [
     TranslateModule,
     FormsModule,
