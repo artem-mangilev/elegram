@@ -13,7 +13,7 @@ export class InputFieldComponent implements OnInit {
   @Input() type: 'text' | 'number' | 'tel' | 'password' = 'text'
   @Input() value = ''
 
-  @Output() update = new EventEmitter<string>()
+  @Output() readonly update = new EventEmitter<string>()
 
   constructor() {}
 
