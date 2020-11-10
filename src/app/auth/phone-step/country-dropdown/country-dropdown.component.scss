@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  width: max-content;
+  position: relative;
+}
+
+.dropdown-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+
+  &.up {
+    transform: rotate(180deg) translateY(50%);
+  }
+}
+
+.country-list {
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+
+  background-color: gray;
+
+  &.hidden {
+    visibility: hidden;
+  }
+}

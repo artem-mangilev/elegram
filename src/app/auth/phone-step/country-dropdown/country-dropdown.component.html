@@ -1,0 +1,11 @@
+<div>
+  <app-input-field
+    [id]="'country-dropdown'"
+    [label]="'Country'"
+  ></app-input-field>
+  <i #dropdownIcon class="icon-down dropdown-icon" [class.up]="!hidden"></i>
+</div>
+
+<ul class="country-list" [class.hidden]="hidden">
+  <li>Sample</li>
+</ul>
