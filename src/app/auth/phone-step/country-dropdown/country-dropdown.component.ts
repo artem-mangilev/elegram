@@ -26,7 +26,6 @@ export class CountryDropdownComponent implements OnInit {
     this.clickInside = true
   }
 
-  // TODO: rename method
   @HostListener('document:click')
   onDocumentClick(): void {
     if (!this.clickInside) {
