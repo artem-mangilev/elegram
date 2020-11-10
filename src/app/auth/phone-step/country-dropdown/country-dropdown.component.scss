@@ -10,9 +10,13 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 1.5rem;
+  transition: all 0.2s;
+  color: #707579;
+  cursor: pointer;
 
   &.up {
     transform: rotate(180deg) translateY(50%);
+    color: #4ea4f6;
   }
 }
 
