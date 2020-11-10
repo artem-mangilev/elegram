@@ -17,20 +17,22 @@ export class CountryDropdownComponent implements OnInit {
 
   @HostListener('click', ['$event.target'])
   onInputClick(target): void {
-    this.clickInside = true
-
     if (target === this.icon.nativeElement) {
       this.hidden = !this.hidden
     } else {
       this.hidden = false
     }
+
+    this.clickInside = true
   }
 
+  // TODO: rename method
   @HostListener('document:click')
-  onOutsideInputClick(): void {
+  onDocumentClick(): void {
     if (!this.clickInside) {
       this.hidden = true
     }
+
     this.clickInside = false
   }
 }

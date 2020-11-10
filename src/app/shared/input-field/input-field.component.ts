@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import {
+  AfterViewChecked,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core'
 
 @Component({
   selector: 'app-input-field',
@@ -6,6 +14,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
   styleUrls: ['./input-field.component.scss'],
 })
 export class InputFieldComponent implements OnInit {
+  // TODO: find better way to get native element on Input
+  @Input() set focus(value: boolean) {
+    setTimeout(() => value && this.input.nativeElement.focus())
+  }
   @Input() id = ''
   @Input() label = ''
   // TODO: add styles for success status
@@ -14,6 +26,8 @@ export class InputFieldComponent implements OnInit {
   @Input() value = ''
 
   @Output() readonly update = new EventEmitter<string>()
+
+  @ViewChild('input') input
 
   constructor() {}
 
