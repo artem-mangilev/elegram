@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core'
 
-import countryList from './country-list.json'
+import { CountryListService } from './country-list.service'
 
 @Component({
   selector: 'app-country-dropdown',
@@ -8,20 +8,19 @@ import countryList from './country-list.json'
   styleUrls: ['./country-dropdown.component.scss'],
 })
 export class CountryDropdownComponent implements OnInit {
+  countryList = this.countryListService.getCountries()
   clickInside = false
   hidden = false
-  countryList: {
-    name: string
-    code: string
-    emoji: string
-    phone: string
-  }[] = countryList
 
   @ViewChild('dropdownIcon') icon
 
-  constructor() {}
+  constructor(private countryListService: CountryListService) {}
 
   ngOnInit(): void {}
+
+  onCountryNameEntered(countryName: string): void {
+    this.countryList = this.countryListService.filterByName(countryName)
+  }
 
   @HostListener('click', ['$event.target'])
   onInputClick(target): void {

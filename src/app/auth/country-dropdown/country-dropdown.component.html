@@ -3,6 +3,7 @@
     [id]="'country-dropdown'"
     [label]="'Country'"
     [focus]="!hidden"
+    (update)="onCountryNameEntered($event)"
   ></app-input-field>
   <i #dropdownIcon class="icon-down dropdown-icon" [class.up]="!hidden"></i>
 </div>
