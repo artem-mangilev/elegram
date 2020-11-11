@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core'
+import { Country } from './country'
 
 import { CountryListService } from './country-list.service'
 
@@ -11,6 +12,7 @@ export class CountryDropdownComponent implements OnInit {
   countryList = this.countryListService.getCountries()
   clickInside = false
   hidden = false
+  inputValue = ''
 
   @ViewChild('dropdownIcon') icon
 
@@ -22,8 +24,11 @@ export class CountryDropdownComponent implements OnInit {
     this.countryList = this.countryListService.filterByName(countryName)
   }
 
-  @HostListener('click', ['$event.target'])
-  onInputClick(target): void {
+  onCountrySelected(country: Country): void {
+    this.inputValue = country.name
+  }
+
+  onInputContainerClick(target): void {
     if (target === this.icon.nativeElement) {
       this.hidden = !this.hidden
     } else {

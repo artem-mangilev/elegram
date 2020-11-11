@@ -1,8 +1,9 @@
-<div>
+<div (click)="onInputContainerClick($event.target)">
   <app-input-field
     [id]="'country-dropdown'"
     [label]="'Country'"
     [focus]="!hidden"
+    [value]="inputValue"
     (update)="onCountryNameEntered($event)"
   ></app-input-field>
   <i #dropdownIcon class="icon-down dropdown-icon" [class.up]="!hidden"></i>
@@ -10,7 +11,11 @@
 
 <div class="country-list-container" [class.hidden]="hidden">
   <ul class="country-list">
-    <li *ngFor="let country of countryList" class="country">
+    <li
+      *ngFor="let country of countryList"
+      class="country"
+      (click)="onCountrySelected(country)"
+    >
       <span class="emoji">{{ country.emoji }}</span>
       <span>{{ country.name }}</span>
       <span class="phone">{{ country.phone }}</span>
