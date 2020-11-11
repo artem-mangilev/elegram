@@ -8,5 +8,9 @@
 </div>
 
 <ul class="country-list" [class.hidden]="hidden">
-  <li>Sample</li>
+  <li *ngFor="let country of countryList" class="country">
+    <span class="emoji">{{ country.emoji }}</span>
+    <span>{{ country.name }}</span>
+    <span class="phone">{{ country.phone }}</span>
+  </li>
 </ul>
