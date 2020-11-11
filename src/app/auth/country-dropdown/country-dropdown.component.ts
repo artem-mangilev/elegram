@@ -1,5 +1,7 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core'
 
+import countryList from './country-list.json'
+
 @Component({
   selector: 'app-country-dropdown',
   templateUrl: './country-dropdown.component.html',
@@ -7,7 +9,13 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core'
 })
 export class CountryDropdownComponent implements OnInit {
   clickInside = false
-  hidden = true
+  hidden = false
+  countryList: {
+    name: string
+    code: string
+    emoji: string
+    phone: string
+  }[] = countryList
 
   @ViewChild('dropdownIcon') icon
 
