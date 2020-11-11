@@ -7,10 +7,12 @@
   <i #dropdownIcon class="icon-down dropdown-icon" [class.up]="!hidden"></i>
 </div>
 
-<ul class="country-list" [class.hidden]="hidden">
-  <li *ngFor="let country of countryList" class="country">
-    <span class="emoji">{{ country.emoji }}</span>
-    <span>{{ country.name }}</span>
-    <span class="phone">{{ country.phone }}</span>
-  </li>
-</ul>
+<div class="country-list-container" [class.hidden]="hidden">
+  <ul class="country-list">
+    <li *ngFor="let country of countryList" class="country">
+      <span class="emoji">{{ country.emoji }}</span>
+      <span>{{ country.name }}</span>
+      <span class="phone">{{ country.phone }}</span>
+    </li>
+  </ul>
+</div>
