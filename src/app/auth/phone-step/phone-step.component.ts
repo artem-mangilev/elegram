@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewChild } from '@angular/core'
+
 import { PhoneService } from './phone.service'
+import { InputFieldComponent } from '../../shared/input-field/input-field.component'
 
 @Component({
   selector: 'app-phone-step',
@@ -9,11 +11,18 @@ import { PhoneService } from './phone.service'
 export class PhoneStepComponent implements OnInit {
   phone = ''
 
+  @ViewChild(InputFieldComponent) private phoneInput: InputFieldComponent
+
   constructor(private phoneService: PhoneService) {}
 
   ngOnInit(): void {}
 
-  onPhoneTyped(text: string): void {
+  onCountrySelected(text: string): void {
+    this.setPhone(text)
+    this.phoneInput.doFocus()
+  }
+
+  setPhone(text: string): void {
     this.phone = this.phoneService.format(text)
   }
 }

@@ -16,7 +16,7 @@ import {
 export class InputFieldComponent implements OnInit {
   // TODO: find better way to get native element on Input
   @Input() set focus(value: boolean) {
-    setTimeout(() => value && this.input.nativeElement.focus())
+    value && this.doFocus()
   }
   @Input() id = ''
   @Input() label = ''
@@ -35,5 +35,9 @@ export class InputFieldComponent implements OnInit {
 
   onKeyUp(value: string): void {
     this.update.emit(value)
+  }
+
+  doFocus(): void {
+    setTimeout(() => this.input.nativeElement.focus())
   }
 }

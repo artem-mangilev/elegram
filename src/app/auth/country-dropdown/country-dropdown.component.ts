@@ -1,4 +1,11 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core'
+import {
+  Component,
+  HostListener,
+  OnInit,
+  ViewChild,
+  Output,
+  EventEmitter,
+} from '@angular/core'
 import { Country } from './country'
 
 import { CountryListService } from './country-list.service'
@@ -14,6 +21,8 @@ export class CountryDropdownComponent implements OnInit {
   hidden = false
   inputValue = ''
 
+  @Output() readonly countrySelect = new EventEmitter<Country>()
+
   @ViewChild('dropdownIcon') icon
 
   constructor(private countryListService: CountryListService) {}
@@ -26,6 +35,7 @@ export class CountryDropdownComponent implements OnInit {
 
   onCountrySelected(country: Country): void {
     this.inputValue = country.name
+    this.countrySelect.emit(country)
   }
 
   onInputContainerClick(target): void {

@@ -1,8 +1,10 @@
-<app-country-dropdown></app-country-dropdown>
+<app-country-dropdown
+  (countrySelect)="onCountrySelected($event.phone)"
+></app-country-dropdown>
 <app-input-field
   [id]="'tel'"
   [label]="'Phone Number'"
   [type]="'tel'"
   [value]="phone"
-  (update)="onPhoneTyped($event)"
+  (update)="setPhone($event)"
 ></app-input-field>
