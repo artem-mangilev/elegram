@@ -162,12 +162,6 @@
     "phone": "591"
   },
   {
-    "name": "Bonaire",
-    "code": "BQ",
-    "emoji": "🇧🇶",
-    "phone": "5997"
-  },
-  {
     "name": "Bosnia and Herzegovina",
     "code": "BA",
     "emoji": "🇧🇦",
@@ -348,7 +342,7 @@
     "phone": "420"
   },
   {
-    "name": "Democratic Republic of the Congo",
+    "name": "Congo Kinshasa",
     "code": "CD",
     "emoji": "🇨🇩",
     "phone": "243"
@@ -390,7 +384,7 @@
     "phone": "1849"
   },
   {
-    "name": "East Timor",
+    "name": "Timor Leste",
     "code": "TL",
     "emoji": "🇹🇱",
     "phone": "670"
@@ -600,7 +594,7 @@
     "phone": "504"
   },
   {
-    "name": "Hong Kong",
+    "name": "Hong Kong SAR China",
     "code": "HK",
     "emoji": "🇭🇰",
     "phone": "852"
@@ -666,7 +660,7 @@
     "phone": "39"
   },
   {
-    "name": "Ivory Coast",
+    "name": "Cote d'Ivoire",
     "code": "CI",
     "emoji": "🇨🇮",
     "phone": "225"
@@ -810,7 +804,7 @@
     "phone": "352"
   },
   {
-    "name": "Macao",
+    "name": "Macao SAR China",
     "code": "MO",
     "emoji": "🇲🇴",
     "phone": "853"
@@ -1050,7 +1044,7 @@
     "phone": "680"
   },
   {
-    "name": "Palestine",
+    "name": "Palestinian Territories",
     "code": "PS",
     "emoji": "🇵🇸",
     "phone": "970"
@@ -1122,7 +1116,7 @@
     "phone": "974"
   },
   {
-    "name": "Republic of the Congo",
+    "name": "Congo Brazzaville",
     "code": "CG",
     "emoji": "🇨🇬",
     "phone": "242"
@@ -1146,13 +1140,13 @@
     "phone": "250"
   },
   {
-    "name": "Réunion",
+    "name": "Reunion",
     "code": "RE",
     "emoji": "🇷🇪",
     "phone": "262"
   },
   {
-    "name": "Saint Barthélemy",
+    "name": "Saint Barthelemy",
     "code": "BL",
     "emoji": "🇧🇱",
     "phone": "590"
@@ -1432,12 +1426,6 @@
     "code": "TV",
     "emoji": "🇹🇻",
     "phone": "688"
-  },
-  {
-    "name": "U.S. Minor Outlying Islands",
-    "code": "UM",
-    "emoji": "🇺🇲",
-    "phone": "1"
   },
   {
     "name": "U.S. Virgin Islands",

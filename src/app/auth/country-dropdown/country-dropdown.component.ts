@@ -46,4 +46,12 @@ export class CountryDropdownComponent implements OnInit {
 
     this.clickInside = false
   }
+
+  getEmojiUrl(country: string): string {
+    const urlName = country
+      .toLowerCase()
+      .replace(/ /g, '-')
+      .replace(/\[|\]|'|\./g, '')
+    return `../../../assets/emoji/flags/flag-${urlName}.png`
+  }
 }
