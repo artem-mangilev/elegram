@@ -6,9 +6,13 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core'
+
 import { Country } from './country'
 
 import { CountryListService } from './country-list.service'
+import { PhoneService } from '../phone-step/phone.service'
+
+type CountryRenderData = Country & { emojiUrl: string }
 
 @Component({
   selector: 'app-country-dropdown',
@@ -16,7 +20,7 @@ import { CountryListService } from './country-list.service'
   styleUrls: ['./country-dropdown.component.scss'],
 })
 export class CountryDropdownComponent implements OnInit {
-  countryList = this.countryListService.getCountries()
+  countryList = this.getCountryList(this.countryListService.getCountries())
   clickInside = false
   hidden = false
   inputValue = ''
@@ -25,17 +29,21 @@ export class CountryDropdownComponent implements OnInit {
 
   @ViewChild('dropdownIcon') icon
 
-  constructor(private countryListService: CountryListService) {}
+  constructor(
+    private countryListService: CountryListService,
+    private phoneService: PhoneService
+  ) {}
 
   ngOnInit(): void {}
 
   onCountryNameEntered(countryName: string): void {
-    this.countryList = this.countryListService.filterByName(countryName)
+    const filtered = this.countryListService.filterByName(countryName)
+    this.countryList = this.getCountryList(filtered)
   }
 
-  onCountrySelected(country: Country): void {
-    this.inputValue = country.name
-    this.countrySelect.emit(country)
+  onCountrySelected({ name, code, emoji, phone }: CountryRenderData): void {
+    this.inputValue = name
+    this.countrySelect.emit({ name, code, emoji, phone })
   }
 
   onInputContainerClick(target): void {
@@ -57,7 +65,17 @@ export class CountryDropdownComponent implements OnInit {
     this.clickInside = false
   }
 
-  getEmojiUrl(country: string): string {
+  getCountryList(countries: Country[]): CountryRenderData[] {
+    return countries.map((country) => {
+      return {
+        ...country,
+        phone: this.phoneService.format(country.phone),
+        emojiUrl: this.getEmojiUrl(country.name),
+      }
+    })
+  }
+
+  private getEmojiUrl(country: string): string {
     const urlName = country
       .toLowerCase()
       .replace(/ /g, '-')

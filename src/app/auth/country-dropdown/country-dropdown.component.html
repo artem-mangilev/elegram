@@ -17,7 +17,7 @@
       (click)="onCountrySelected(country)"
     >
       <span class="emoji">
-        <img [src]="getEmojiUrl(country.name)" [alt]="country.emoji" />
+        <img [src]="country.emojiUrl" [alt]="country.emoji" />
       </span>
       <span>{{ country.name }}</span>
       <span class="phone">{{ country.phone }}</span>
