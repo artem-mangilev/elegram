@@ -9,7 +9,7 @@ import { InputFieldComponent } from '../../shared/input-field/input-field.compon
   styleUrls: ['./phone-step.component.scss'],
 })
 export class PhoneStepComponent implements OnInit {
-  phone = ''
+  phone = 'test'
 
   @ViewChild(InputFieldComponent) private phoneInput: InputFieldComponent
 

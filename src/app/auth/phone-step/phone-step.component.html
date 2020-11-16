@@ -5,6 +5,6 @@
   [id]="'tel'"
   [label]="'Phone Number'"
   [type]="'tel'"
-  [value]="phone"
-  (update)="setPhone($event)"
+  [(ngModel)]="phone"
+  (ngModelChange)="setPhone($event)"
 ></app-input-field>
