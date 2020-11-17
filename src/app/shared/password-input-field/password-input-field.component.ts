@@ -19,9 +19,9 @@ export class PasswordInputFieldComponent implements OnInit {
   @Input() status = 'default'
   @Input() value = ''
 
-  @Output() passwordUpdate = new EventEmitter<string>()
-  @Output() passwordShow = new EventEmitter()
-  @Output() passwordHide = new EventEmitter()
+  @Output() readonly passwordUpdate = new EventEmitter<string>()
+  @Output() readonly passwordShow = new EventEmitter()
+  @Output() readonly passwordHide = new EventEmitter()
 
   passwordHidden = true
   type: 'text' | 'password' = 'password'
