@@ -1,4 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core'
 
 import { PhoneService } from './phone.service'
 import { InputFieldComponent } from '../../shared/input-field/input-field.component'
@@ -7,6 +12,7 @@ import { InputFieldComponent } from '../../shared/input-field/input-field.compon
   selector: 'app-phone-step',
   templateUrl: './phone-step.component.html',
   styleUrls: ['./phone-step.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhoneStepComponent implements OnInit {
   phone = 'test'

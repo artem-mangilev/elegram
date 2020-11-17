@@ -1,9 +1,17 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core'
 
 @Component({
   selector: 'app-password-input-field',
   templateUrl: './password-input-field.component.html',
   styleUrls: ['./password-input-field.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PasswordInputFieldComponent implements OnInit {
   @Input() id = ''

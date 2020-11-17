@@ -5,6 +5,7 @@ import {
   ViewChild,
   Output,
   EventEmitter,
+  ChangeDetectionStrategy,
 } from '@angular/core'
 
 import { Country } from './country'
@@ -18,6 +19,7 @@ type CountryRenderData = Country & { emojiUrl: string }
   selector: 'app-country-dropdown',
   templateUrl: './country-dropdown.component.html',
   styleUrls: ['./country-dropdown.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CountryDropdownComponent implements OnInit {
   countryList = this.getCountryList(this.countryListService.getCountries())
