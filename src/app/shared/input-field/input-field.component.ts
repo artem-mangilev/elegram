@@ -1,14 +1,18 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  forwardRef,
   Input,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core'
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
+import {
+  ControlValueAccessor,
+  DefaultValueAccessor,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms'
 
 @Component({
   selector: 'app-input-field',
@@ -23,7 +27,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputFieldComponent implements OnInit, ControlValueAccessor {
+export class InputFieldComponent
+  implements OnInit, AfterViewInit, ControlValueAccessor {
+  onControlChanged: any = () => {}
+  onControlTouched: any = () => {}
+
   // TODO: find better way to get native element on Input
   @Input() set focus(value: boolean) {
     value && this.doFocus()
@@ -38,16 +46,19 @@ export class InputFieldComponent implements OnInit, ControlValueAccessor {
   @Output() readonly update = new EventEmitter<string>()
 
   @ViewChild('input') input
+  @ViewChild(DefaultValueAccessor) valueAccessor: DefaultValueAccessor
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  onChange(value: string): void {}
+  ngAfterViewInit(): void {
+    this.valueAccessor.registerOnChange(this.onControlChanged)
+    this.valueAccessor.registerOnTouched(this.onControlTouched)
+  }
 
   onKeyUp(value: string): void {
     this.update.emit(value)
-    this.onChange(value)
   }
 
   doFocus(): void {
@@ -59,8 +70,10 @@ export class InputFieldComponent implements OnInit, ControlValueAccessor {
   }
 
   registerOnChange(fn: any): void {
-    this.onChange = fn
+    this.onControlChanged = fn
   }
 
-  registerOnTouched(): void {}
+  registerOnTouched(fn: any): void {
+    this.onControlTouched = fn
+  }
 }
