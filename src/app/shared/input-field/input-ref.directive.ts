@@ -6,10 +6,6 @@ import { Directive, Renderer2 } from '@angular/core'
 export class InputRefDirective {
   constructor(private renderer: Renderer2) {}
 
-  private get elem() {
-    return this.renderer.selectRootElement('input')
-  }
-
   addClass(className: string): void {
     this.renderer.addClass(this.elem, className)
   }
@@ -20,5 +16,9 @@ export class InputRefDirective {
 
   getProperty(name: string) {
     return this.elem[name]
+  }
+
+  private get elem() {
+    return this.renderer.selectRootElement('input')
   }
 }
