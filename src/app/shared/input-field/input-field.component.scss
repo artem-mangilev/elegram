@@ -4,7 +4,7 @@
   width: max-content;
 }
 
-input {
+:host ::ng-deep input {
   $active-color: #4ea4f6;
   $error-color: #ea605d;
 

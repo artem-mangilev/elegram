@@ -1,13 +1,2 @@
-<input
-  ngDefaultControl
-  #input
-  autocomplete="off"
-  placeholder=" "
-  [type]="type"
-  [id]="id"
-  [value]="value"
-  [class.error]="status === 'error'"
-  [class.success]="status === 'success'"
-  (keyup)="onKeyUp($event.target.value)"
-/>
+<ng-content select="input"></ng-content>
 <label [for]="id">{{ label }}</label>

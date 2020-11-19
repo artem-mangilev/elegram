@@ -9,12 +9,14 @@ import { TranslateModule } from '@ngx-translate/core'
 import { InputFieldComponent } from './input-field/input-field.component'
 import { PasswordInputFieldComponent } from './password-input-field/password-input-field.component'
 import { PrimaryButtonComponent } from './primary-button/primary-button.component'
+import { InputRefDirective } from './input-field/input-ref.directive'
 
 @NgModule({
   declarations: [
     InputFieldComponent,
     PasswordInputFieldComponent,
     PrimaryButtonComponent,
+    InputRefDirective,
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,7 @@ import { PrimaryButtonComponent } from './primary-button/primary-button.componen
     TranslateModule,
     FormsModule,
     InputFieldComponent,
+    InputRefDirective,
     PasswordInputFieldComponent,
     PrimaryButtonComponent,
   ],
