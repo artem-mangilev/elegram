@@ -41,6 +41,9 @@ export class InputFieldComponent implements OnInit, AfterContentInit {
     if (this.input.getProperty('type') === 'password') {
       this.passwordHidden = true
     }
+
+    // This little hack allows to lift label-placeholder on top when input focused
+    this.input.setProperty('placeholder', ' ')
   }
 
   showPassword(): void {
