@@ -1,2 +1,13 @@
 <ng-content select="input"></ng-content>
 <label [for]="id">{{ label }}</label>
+
+<i
+  class="eye icon-eye1"
+  *ngIf="passwordHidden !== undefined && passwordHidden"
+  (click)="showPassword()"
+></i>
+<i
+  class="eye icon-eye2"
+  *ngIf="passwordHidden !== undefined && !passwordHidden"
+  (click)="hidePassword()"
+></i>
