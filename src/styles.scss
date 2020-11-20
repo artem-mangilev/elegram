@@ -17,6 +17,10 @@ html {
   font-size: 12px;
 }
 
+body {
+  margin: 0;
+}
+
 input,
 button {
   &:focus {
@@ -29,5 +33,9 @@ button {
 }
 
 ul {
+  margin: 0;
+}
+
+h1 {
   margin: 0;
 }

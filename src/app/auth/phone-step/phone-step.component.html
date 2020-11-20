@@ -1,8 +1,17 @@
+<div class="image-container">
+  <img src="../../../assets/logo.svg" draggable="false" />
+</div>
+
+<h1 class="title">Sign in to Telegram</h1>
+
+<p class="subtitle">Please confirm your country and enter your phone number.</p>
+
 <app-country-dropdown
   [phone]="phone"
   (countrySelect)="onCountrySelected($event.phone)"
 ></app-country-dropdown>
-<app-input-field [label]="'tel'">
+
+<app-input-field [label]="'Phone Number'">
   <input
     #input
     appInputRef
