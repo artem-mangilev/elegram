@@ -21,3 +21,5 @@
     [(ngModel)]="phone"
   />
 </app-input-field>
+
+<app-primary-button *ngIf="isPhoneValid" [value]="'next'"></app-primary-button>

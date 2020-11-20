@@ -5,6 +5,8 @@ import {
   ViewChild,
 } from '@angular/core'
 
+import { PhoneService } from './phone.service'
+
 @Component({
   selector: 'app-phone-step',
   templateUrl: './phone-step.component.html',
@@ -16,7 +18,7 @@ export class PhoneStepComponent implements OnInit {
 
   @ViewChild('input') input
 
-  constructor() {}
+  constructor(private phoneService: PhoneService) {}
 
   ngOnInit(): void {}
 
@@ -27,5 +29,9 @@ export class PhoneStepComponent implements OnInit {
 
   setPhone(text: string): void {
     this.phone = text
+  }
+
+  get isPhoneValid(): boolean {
+    return this.phoneService.isValid(this.phone)
   }
 }

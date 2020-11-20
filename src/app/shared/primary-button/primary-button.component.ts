@@ -12,7 +12,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrimaryButtonComponent implements OnInit {
-  @Input() status: 'default' | 'loading' = 'loading'
+  @Input() status: 'default' | 'loading' = 'default'
   @Input() value = ''
 
   rippleColor = '#00000020'
