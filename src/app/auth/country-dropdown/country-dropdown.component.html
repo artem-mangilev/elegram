@@ -1,11 +1,12 @@
 <div (click)="onInputContainerClick($event.target)">
-  <app-input-field
-    [id]="'country-dropdown'"
-    [label]="'Country'"
-    [focus]="!hidden"
-    [value]="inputValue"
-    (update)="onCountryNameEntered($event)"
-  ></app-input-field>
+  <app-input-field [label]="'Country'">
+    <input
+      appInputRef
+      id="country-dropdown"
+      [value]="inputValue"
+      (keyup)="onCountryNameEntered($event.target.value)"
+    />
+  </app-input-field>
   <i #dropdownIcon class="icon-down dropdown-icon" [class.up]="!hidden"></i>
 </div>
 
