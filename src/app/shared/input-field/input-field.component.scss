@@ -1,17 +1,13 @@
 :host {
   display: block;
   position: relative;
-  width: max-content;
 }
 
 :host ::ng-deep input {
   $active-color: #4ea4f6;
   $error-color: #ea605d;
 
-  // width: 100%;
-  // TODO: remove later and uncomment prev line
-  width: 288px;
-
+  width: 100%;
   height: 43px;
   padding: 0 1rem;
   border: 1px solid #dadce0;
