@@ -5,9 +5,6 @@ import {
   ViewChild,
 } from '@angular/core'
 
-import { PhoneService } from './phone.service'
-import { InputFieldComponent } from '../../shared/input-field/input-field.component'
-
 @Component({
   selector: 'app-phone-step',
   templateUrl: './phone-step.component.html',
@@ -15,20 +12,20 @@ import { InputFieldComponent } from '../../shared/input-field/input-field.compon
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhoneStepComponent implements OnInit {
-  phone = 'test'
+  phone = ''
 
-  @ViewChild(InputFieldComponent) private phoneInput: InputFieldComponent
+  @ViewChild('input') input
 
-  constructor(private phoneService: PhoneService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
   onCountrySelected(text: string): void {
     this.setPhone(text)
-    this.phoneInput.doFocus()
+    this.input.nativeElement.focus()
   }
 
   setPhone(text: string): void {
-    this.phone = this.phoneService.format(text)
+    this.phone = text
   }
 }

@@ -1,3 +1,14 @@
-<app-input-field [label]="'password'">
-  <input appInputRef id="password" type="text" />
+<app-country-dropdown
+  [phone]="phone"
+  (countrySelect)="onCountrySelected($event.phone)"
+></app-country-dropdown>
+<app-input-field [label]="'tel'">
+  <input
+    #input
+    appInputRef
+    appPhoneMask
+    id="tel"
+    (ngModelChange)="setPhone($event)"
+    [(ngModel)]="phone"
+  />
 </app-input-field>
