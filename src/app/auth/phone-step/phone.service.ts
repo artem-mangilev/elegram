@@ -18,4 +18,12 @@ export class PhoneService {
   unformat(text: string): string {
     return text.replace(/\D/g, '')
   }
+
+  isValid(text: string): boolean {
+    this.instance.reset()
+    this.instance.input(text)
+
+    const number = this.instance.getNumber()
+    return number ? number.isValid() : false
+  }
 }
