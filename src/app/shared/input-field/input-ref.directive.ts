@@ -1,24 +1,20 @@
-import { Directive, Renderer2 } from '@angular/core'
+import { Directive, ElementRef, Renderer2 } from '@angular/core'
 
 @Directive({
   selector: '[appInputRef]',
 })
 export class InputRefDirective {
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private el: ElementRef) {}
 
   addClass(className: string): void {
-    this.renderer.addClass(this.elem, className)
+    this.renderer.addClass(this.el.nativeElement, className)
   }
 
   setProperty(name: string, value: string): void {
-    this.renderer.setProperty(this.elem, name, value)
+    this.renderer.setProperty(this.el.nativeElement, name, value)
   }
 
   getProperty(name: string) {
-    return this.elem[name]
-  }
-
-  private get elem() {
-    return this.renderer.selectRootElement('input')
+    return this.el.nativeElement[name]
   }
 }
