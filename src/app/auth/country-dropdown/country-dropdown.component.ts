@@ -25,7 +25,7 @@ type CountryRenderData = Country & { emojiUrl: string }
 export class CountryDropdownComponent implements OnInit {
   countryList = this.getCountryList(this.countryListService.getCountries())
   clickInside = false
-  hidden = false
+  hidden = true
   inputValue = ''
 
   @Input() set phone(text: string) {
