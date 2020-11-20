@@ -20,4 +20,10 @@ export class CountryListService {
 
     return filtered.length ? filtered : this.countryList
   }
+
+  filterByPhone(phone: string): Country[] {
+    return this.countryList.filter(
+      (country) => country.phone === phone.slice(0, country.phone.length)
+    )
+  }
 }

@@ -6,6 +6,7 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
+  Input,
 } from '@angular/core'
 
 import { Country } from './country'
@@ -26,6 +27,12 @@ export class CountryDropdownComponent implements OnInit {
   clickInside = false
   hidden = false
   inputValue = ''
+
+  @Input() set phone(text: string) {
+    const unformatted = this.phoneService.unformat(text)
+    const country = this.countryListService.filterByPhone(unformatted)[0]
+    this.inputValue = country?.name || ''
+  }
 
   @Output() readonly countrySelect = new EventEmitter<Country>()
 
