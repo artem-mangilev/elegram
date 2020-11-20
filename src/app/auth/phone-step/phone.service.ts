@@ -15,7 +15,7 @@ export class PhoneService {
     return this.instance.input(text)
   }
 
-  unformat(text: string): string {
+  raw(text: string): string {
     return text.replace(/\D/g, '')
   }
 

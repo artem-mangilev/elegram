@@ -19,9 +19,7 @@ export class PhoneMaskDirective {
   }
 
   onInputChange(value: string): void {
-    const newVal = value.replace(/\D/g, '')
-
-    const formatted = this.phoneService.format(newVal)
+    const formatted = this.phoneService.format(this.phoneService.raw(value))
     this.ngControl.valueAccessor.writeValue(formatted)
   }
 }

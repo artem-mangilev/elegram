@@ -29,8 +29,8 @@ export class CountryDropdownComponent implements OnInit {
   inputValue = ''
 
   @Input() set phone(text: string) {
-    const unformatted = this.phoneService.unformat(text)
-    const country = this.countryListService.filterByPhone(unformatted)[0]
+    const rawPhone = this.phoneService.raw(text)
+    const country = this.countryListService.filterByPhone(rawPhone)[0]
     this.inputValue = country?.name || ''
   }
 
