@@ -1,6 +1,7 @@
 <div (click)="onInputContainerClick($event.target)">
   <app-input-field [label]="'Country'">
     <input
+      #input
       appInputRef
       id="country-dropdown"
       [value]="inputValue"

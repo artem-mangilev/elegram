@@ -37,6 +37,7 @@ export class CountryDropdownComponent implements OnInit {
   @Output() readonly countrySelect = new EventEmitter<Country>()
 
   @ViewChild('dropdownIcon') icon
+  @ViewChild('input') input
 
   constructor(
     private countryListService: CountryListService,
@@ -58,6 +59,9 @@ export class CountryDropdownComponent implements OnInit {
   onInputContainerClick(target): void {
     if (target === this.icon.nativeElement) {
       this.hidden = !this.hidden
+
+      const input = this.input.nativeElement
+      this.hidden ? input.blur() : input.focus()
     } else {
       this.hidden = false
     }
