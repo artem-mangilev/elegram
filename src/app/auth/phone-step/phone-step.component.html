@@ -17,8 +17,8 @@
     appInputRef
     appPhoneMask
     id="tel"
-    (ngModelChange)="setPhone($event)"
-    [(ngModel)]="phone"
+    [value]="phone"
+    (input)="setPhone($event.target.value)"
   />
 </app-input-field>
 
