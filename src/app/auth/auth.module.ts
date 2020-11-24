@@ -6,7 +6,8 @@ import { SharedModule } from 'app/shared/shared.module'
 import { AuthRoutingModule } from './auth-routing.module'
 import { PhoneStepComponent } from './phone-step/phone-step.component'
 import { CountryDropdownComponent } from './country-dropdown/country-dropdown.component'
-import { PhoneMaskDirective } from './phone-step/phone-mask.directive'
+import { PhoneMaskDirective } from './phone-step/phone-mask.directive';
+import { CodeStepComponent } from './code-step/code-step.component'
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { PhoneMaskDirective } from './phone-step/phone-mask.directive'
     PhoneStepComponent,
     CountryDropdownComponent,
     PhoneMaskDirective,
+    CodeStepComponent,
   ],
   imports: [CommonModule, SharedModule, AuthRoutingModule],
 })
