@@ -10,7 +10,7 @@ import { PhoneService } from './phone.service'
 @Component({
   selector: 'app-phone-step',
   templateUrl: './phone-step.component.html',
-  styleUrls: ['./phone-step.component.scss'],
+  styleUrls: ['./phone-step.component.scss', './../step.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhoneStepComponent implements OnInit {

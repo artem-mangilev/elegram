@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs'
 @Component({
   selector: 'app-code-step',
   templateUrl: './code-step.component.html',
-  styleUrls: ['./code-step.component.scss'],
+  styleUrls: ['./code-step.component.scss', './../step.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CodeStepComponent implements OnInit, OnDestroy {
