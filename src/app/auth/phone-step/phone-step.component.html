@@ -26,4 +26,8 @@
   <mat-checkbox>Keep me signed in</mat-checkbox>
 </app-checkbox>
 
-<app-primary-button *ngIf="isPhoneValid" [value]="'next'"></app-primary-button>
+<app-primary-button
+  *ngIf="isPhoneValid"
+  [value]="'next'"
+  [routerLink]="['/code', phone]"
+></app-primary-button>
