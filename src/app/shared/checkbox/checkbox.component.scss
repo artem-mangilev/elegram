@@ -1,0 +1,15 @@
+:host {
+  display: block;
+
+  ::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+    background-color: #50a2e9;
+  }
+
+  ::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-color: #8d969c;
+  }
+
+  ::ng-deep .mat-checkbox-inner-container {
+    margin-right: 2.2rem;
+  }
+}
