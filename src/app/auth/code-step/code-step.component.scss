@@ -2,6 +2,14 @@
   display: block;
 }
 
+.image-container {
+  position: relative;
+
+  & > .monkey-container {
+    position: absolute;
+  }
+}
+
 .edit {
   font-size: 1.6rem;
   margin-left: 0.7rem;
