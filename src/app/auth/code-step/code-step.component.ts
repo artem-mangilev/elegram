@@ -20,23 +20,21 @@ import lottie, { AnimationItem } from 'lottie-web'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
-  phone = ''
   inputLabel = 'Code'
   inputStatus = 'default'
+  phone = ''
 
+  private fromIdleToTracking: Promise<unknown>
   private initialInputFocus = true
   private monkeyIdle: AnimationItem
   private monkeyTracking: AnimationItem
   private monkeyTrackingCurrentFrame = 1
   private readonly monkeyTrackingDuration = 180
-  private readonly frameStepSize = this.monkeyTrackingDuration / 5
+  private readonly monkeyTrackingframeStepSize = this.monkeyTrackingDuration / 5
+  private sub: Subscription
 
   @ViewChild('idleMonkeyContainer') idleMonkeyContainer: ElementRef
   @ViewChild('trackingMonkeyContainer') trackingMonkeyContainer: ElementRef
-
-  private sub: Subscription
-  inputValue: string
-  fromIdleToTracking: Promise<unknown>
 
   constructor(private route: ActivatedRoute) {}
 
@@ -92,7 +90,7 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onInput(value: string): void {
     this.fromIdleToTracking.then(() => {
-      const nextFrame = value.length * this.frameStepSize
+      const nextFrame = value.length * this.monkeyTrackingframeStepSize
 
       this.monkeyTracking.playSegments(
         [this.monkeyTrackingCurrentFrame, nextFrame],
