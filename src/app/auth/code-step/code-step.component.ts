@@ -25,7 +25,7 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
   phone = ''
 
   private fromIdleToTracking: Promise<unknown>
-  private initialInputFocus = true
+  private initialInputMouseOver = true
   private monkeyIdle: AnimationItem
   private monkeyTracking: AnimationItem
   private monkeyTrackingCurrentFrame = 1
@@ -58,8 +58,8 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
     this.sub.unsubscribe()
   }
 
-  onFocus(): void {
-    if (this.initialInputFocus) {
+  onInputMouseOver(): void {
+    if (this.initialInputMouseOver) {
       this.fromIdleToTracking = new Promise((resolve, reject) => {
         this.monkeyIdle.addEventListener('loopComplete', resolve)
       })
@@ -85,7 +85,7 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
         })
     }
 
-    this.initialInputFocus = false
+    this.initialInputMouseOver = false
   }
 
   onInput(value: string): void {
