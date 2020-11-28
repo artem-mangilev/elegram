@@ -26,10 +26,10 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private codeLength = 0
   private nextFrame = 0
-  private frameStepSize = 0
   private monkeyIdle: AnimationItem
   private monkeyTracking: AnimationItem
   private readonly monkeyTrackingDuration = 180
+  private readonly frameStepSize = this.monkeyTrackingDuration / 5
 
   @ViewChild('idleMonkeyContainer') idleMonkeyContainer: ElementRef
   @ViewChild('trackingMonkeyContainer') trackingMonkeyContainer: ElementRef
@@ -85,14 +85,13 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
     this.monkeyIdle.addEventListener('loopComplete', () => {
       this.monkeyIdle.pause()
 
-      this.frameStepSize = this.monkeyTrackingDuration / 5
       this.nextFrame = this.frameStepSize
 
       this.monkeyTracking = lottie.loadAnimation({
         container: this.trackingMonkeyContainer.nativeElement,
         renderer: 'svg',
         loop: false,
-        initialSegment: [0, this.frameStepSize],
+        initialSegment: [0, this.nextFrame],
         path: '../../../assets/monkey/TwoFactorSetupMonkeyTracking.json',
       })
 
