@@ -63,25 +63,28 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
   onFocus(): void {
     if (this.initialInputFocus) {
       this.fromIdleToTracking = new Promise((resolve, reject) => {
-        this.monkeyIdle.addEventListener('loopComplete', () => {
-          this.monkeyIdle.pause()
+        this.monkeyIdle.addEventListener('loopComplete', resolve)
+      })
+        .then(() => {
+          return new Promise((resolve, reject) => {
+            this.monkeyIdle.pause()
 
-          this.monkeyTracking = lottie.loadAnimation({
-            container: this.trackingMonkeyContainer.nativeElement,
-            renderer: 'svg',
-            loop: false,
-            initialSegment: [0, this.monkeyTrackingCurrentFrame],
-            path: '../../../assets/monkey/TwoFactorSetupMonkeyTracking.json',
-          })
+            this.monkeyTracking = lottie.loadAnimation({
+              container: this.trackingMonkeyContainer.nativeElement,
+              renderer: 'svg',
+              loop: false,
+              initialSegment: [0, this.monkeyTrackingCurrentFrame],
+              path: '../../../assets/monkey/TwoFactorSetupMonkeyTracking.json',
+            })
 
-          this.monkeyTracking.setSpeed(1.6)
+            this.monkeyTracking.setSpeed(1.6)
 
-          this.monkeyTracking.addEventListener('DOMLoaded', () => {
-            this.monkeyIdle.destroy()
-            resolve()
+            this.monkeyTracking.addEventListener('DOMLoaded', resolve)
           })
         })
-      })
+        .then(() => {
+          this.monkeyIdle.destroy()
+        })
     }
 
     this.initialInputFocus = false
