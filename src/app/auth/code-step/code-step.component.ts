@@ -92,8 +92,7 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onInput(value: string): void {
     this.fromIdleToTracking.then(() => {
-      let nextFrame = value.length * this.frameStepSize
-      nextFrame = nextFrame === 0 ? 1 : nextFrame
+      const nextFrame = value.length * this.frameStepSize
 
       this.monkeyTracking.playSegments(
         [this.monkeyTrackingCurrentFrame, nextFrame],
