@@ -24,6 +24,7 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
   inputLabel = 'Code'
   inputStatus = 'default'
 
+  private initialInputFocus = true
   private monkeyIdle: AnimationItem
   private monkeyTracking: AnimationItem
   private monkeyTrackingCurrentFrame = 1
@@ -35,6 +36,7 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private sub: Subscription
   inputValue: string
+  fromIdleToTracking: Promise<unknown>
 
   constructor(private route: ActivatedRoute) {}
 
@@ -58,30 +60,37 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
     this.sub.unsubscribe()
   }
 
+  onFocus(): void {
+    if (this.initialInputFocus) {
+      this.fromIdleToTracking = new Promise((resolve, reject) => {
+        if (!this.monkeyTracking) {
+          this.monkeyIdle.addEventListener('loopComplete', () => {
+            this.monkeyIdle.pause()
+
+            this.monkeyTracking = lottie.loadAnimation({
+              container: this.trackingMonkeyContainer.nativeElement,
+              renderer: 'svg',
+              loop: false,
+              initialSegment: [0, this.monkeyTrackingCurrentFrame],
+              path: '../../../assets/monkey/TwoFactorSetupMonkeyTracking.json',
+            })
+
+            this.monkeyTracking.setSpeed(1.6)
+
+            this.monkeyTracking.addEventListener('DOMLoaded', () => {
+              this.monkeyIdle.destroy()
+              resolve()
+            })
+          })
+        }
+      })
+    }
+
+    this.initialInputFocus = false
+  }
+
   onInput(value: string): void {
-    new Promise((resolve, reject) => {
-      if (!this.monkeyTracking) {
-        this.monkeyIdle.addEventListener('loopComplete', () => {
-          this.monkeyIdle.pause()
-
-          this.monkeyTracking = lottie.loadAnimation({
-            container: this.trackingMonkeyContainer.nativeElement,
-            renderer: 'svg',
-            loop: false,
-            initialSegment: [0, this.monkeyTrackingCurrentFrame],
-            path: '../../../assets/monkey/TwoFactorSetupMonkeyTracking.json',
-          })
-
-          this.monkeyTracking.addEventListener('DOMLoaded', () => {
-            this.monkeyIdle.destroy()
-
-            resolve(value)
-          })
-        })
-      } else {
-        resolve(value)
-      }
-    }).then((value: string) => {
+    this.fromIdleToTracking.then(() => {
       let nextFrame = value.length * this.frameStepSize
       nextFrame = nextFrame === 0 ? 1 : nextFrame
 
