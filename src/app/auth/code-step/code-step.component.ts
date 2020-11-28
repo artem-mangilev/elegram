@@ -24,10 +24,9 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
   inputLabel = 'Code'
   inputStatus = 'default'
 
-  private codeLength = 0
-  private nextFrame = 0
   private monkeyIdle: AnimationItem
   private monkeyTracking: AnimationItem
+  private monkeyTrackingCurrentFrame = 1
   private readonly monkeyTrackingDuration = 180
   private readonly frameStepSize = this.monkeyTrackingDuration / 5
 
@@ -35,6 +34,7 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('trackingMonkeyContainer') trackingMonkeyContainer: ElementRef
 
   private sub: Subscription
+  inputValue: string
 
   constructor(private route: ActivatedRoute) {}
 
@@ -58,48 +58,39 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
     this.sub.unsubscribe()
   }
 
-  // when init, monkey is in idle
-  // when first symbol typed, wait for end of idle,
-  // then show tracking monkey and play it to 1/5 of animation
-  // when second symbol typed, play to 2/5 of animation
-  // repeat until 5/5 and stop
   onInput(value: string): void {
-    if (value.length === 1) {
-      this.switchToTrackingMonkey && this.switchToTrackingMonkey()
-    } else {
-      const currentFrame = this.nextFrame
+    new Promise((resolve, reject) => {
+      if (!this.monkeyTracking) {
+        this.monkeyIdle.addEventListener('loopComplete', () => {
+          this.monkeyIdle.pause()
 
-      if (value.length > this.codeLength) {
-        this.nextFrame = this.nextFrame + this.frameStepSize
-      } else if (value.length < this.codeLength) {
-        this.nextFrame = this.nextFrame - this.frameStepSize
+          this.monkeyTracking = lottie.loadAnimation({
+            container: this.trackingMonkeyContainer.nativeElement,
+            renderer: 'svg',
+            loop: false,
+            initialSegment: [0, this.monkeyTrackingCurrentFrame],
+            path: '../../../assets/monkey/TwoFactorSetupMonkeyTracking.json',
+          })
+
+          this.monkeyTracking.addEventListener('DOMLoaded', () => {
+            this.monkeyIdle.destroy()
+
+            resolve(value)
+          })
+        })
+      } else {
+        resolve(value)
       }
+    }).then((value: string) => {
+      let nextFrame = value.length * this.frameStepSize
+      nextFrame = nextFrame === 0 ? 1 : nextFrame
 
-      this.monkeyTracking.playSegments([currentFrame, this.nextFrame])
-    }
+      this.monkeyTracking.playSegments([
+        this.monkeyTrackingCurrentFrame,
+        nextFrame,
+      ])
 
-    this.codeLength = value.length
-  }
-
-  private switchToTrackingMonkey() {
-    this.monkeyIdle.addEventListener('loopComplete', () => {
-      this.monkeyIdle.pause()
-
-      this.nextFrame = this.frameStepSize
-
-      this.monkeyTracking = lottie.loadAnimation({
-        container: this.trackingMonkeyContainer.nativeElement,
-        renderer: 'svg',
-        loop: false,
-        initialSegment: [0, this.nextFrame],
-        path: '../../../assets/monkey/TwoFactorSetupMonkeyTracking.json',
-      })
-
-      this.monkeyTracking.addEventListener('DOMLoaded', () => {
-        this.monkeyIdle.destroy()
-      })
+      this.monkeyTrackingCurrentFrame = nextFrame
     })
-
-    this.switchToTrackingMonkey = undefined
   }
 }
