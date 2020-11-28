@@ -95,10 +95,10 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
       let nextFrame = value.length * this.frameStepSize
       nextFrame = nextFrame === 0 ? 1 : nextFrame
 
-      this.monkeyTracking.playSegments([
-        this.monkeyTrackingCurrentFrame,
-        nextFrame,
-      ])
+      this.monkeyTracking.playSegments(
+        [this.monkeyTrackingCurrentFrame, nextFrame],
+        true
+      )
 
       this.monkeyTrackingCurrentFrame = nextFrame
     })
