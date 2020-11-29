@@ -11,6 +11,7 @@ import { InputFieldComponent } from './input-field/input-field.component'
 import { PrimaryButtonComponent } from './primary-button/primary-button.component'
 import { InputRefDirective } from './input-field/input-ref.directive'
 import { CheckboxComponent } from './checkbox/checkbox.component'
+import { OnlyNumbersDirective } from './only-numbers.directive'
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component'
     PrimaryButtonComponent,
     InputRefDirective,
     CheckboxComponent,
+    OnlyNumbersDirective,
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component'
     InputRefDirective,
     PrimaryButtonComponent,
     CheckboxComponent,
+    OnlyNumbersDirective,
   ],
 })
 export class SharedModule {}

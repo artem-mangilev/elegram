@@ -15,6 +15,7 @@
 <app-input-field [label]="inputLabel" [status]="inputStatus">
   <input
     appInputRef
+    appOnlyNumbers
     id="code"
     maxlength="5"
     (input)="onInput($event.target.value)"
