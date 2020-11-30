@@ -51,3 +51,6 @@ Thumbs.db
 
 # design related stufff
 folders.txt
+
+# env
+src/environments/environment.dev.ts
