@@ -31,7 +31,7 @@ export class AuthService {
       .then((response) => {
         console.log(response)
 
-        this.phoneNumber = response.phone_number
+        this.phoneNumber = internationalPhoneNumber
         this.phoneCodeHash = response.phone_code_hash
       })
   }
