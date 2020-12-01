@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router'
 import { Subscription } from 'rxjs'
 
 import lottie, { AnimationItem } from 'lottie-web'
+import { AuthService } from '../auth.service'
 
 @Component({
   selector: 'app-code-step',
@@ -36,7 +37,10 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('idleMonkeyContainer') idleMonkeyContainer: ElementRef
   @ViewChild('trackingMonkeyContainer') trackingMonkeyContainer: ElementRef
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.sub = this.route.paramMap.subscribe((params) => {
@@ -99,5 +103,11 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.monkeyTrackingCurrentFrame = nextFrame
     })
+
+    if (value.length === 5) {
+      this.authService.signIn(value).then(() => {
+        console.log('signed in')
+      })
+    }
   }
 }
