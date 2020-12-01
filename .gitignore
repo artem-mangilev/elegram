@@ -53,4 +53,8 @@ Thumbs.db
 folders.txt
 
 # env
+src/environments/environment.ts
 src/environments/environment.dev.ts
+src/environments/environment.prod.ts
+src/environments/environment.web.ts
+
