@@ -17,6 +17,8 @@ import { AuthService } from '../auth.service'
 })
 export class PhoneStepComponent implements OnInit {
   phone = ''
+  phoneInputLabel = 'Phone Number'
+  phoneInputStatus = 'default'
 
   @ViewChild('input') input
 
@@ -29,9 +31,16 @@ export class PhoneStepComponent implements OnInit {
   ngOnInit(): void {}
 
   onButtonClick(): void {
-    this.authService.setPhoneNumber(this.phone).then(() => {
-      this.router.navigate(['/code', this.phone])
-    })
+    this.authService
+      .setPhoneNumber(this.phone)
+      .then(() => {
+        this.router.navigate(['/code', this.phone])
+      })
+      .catch((error) => {
+        console.log(error)
+        this.phoneInputLabel = error.error_message
+        this.phoneInputStatus = 'error'
+      })
   }
 
   onCountrySelected(text: string): void {

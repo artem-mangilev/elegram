@@ -11,11 +11,10 @@
   (countrySelect)="onCountrySelected($event.phone)"
 ></app-country-dropdown>
 
-<app-input-field [label]="'Phone Number'">
+<app-input-field [label]="phoneInputLabel" [status]="phoneInputStatus">
   <input
     #input
     appInputRef
-    appPhoneMask
     id="tel"
     [value]="phone"
     (input)="setPhone($event.target.value)"
@@ -27,7 +26,6 @@
 </app-checkbox>
 
 <app-primary-button
-  *ngIf="isPhoneValid"
   [value]="'next'"
-  [routerLink]="['/code', phone]"
+  (clickEvent)="onButtonClick()"
 ></app-primary-button>
