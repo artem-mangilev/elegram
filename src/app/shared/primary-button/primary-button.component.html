@@ -1,4 +1,4 @@
-<button matRipple [matRippleColor]="rippleColor">
+<button matRipple [matRippleColor]="rippleColor" (click)="clickEvent.emit()">
   {{ value }}
   <div>
     <mat-spinner

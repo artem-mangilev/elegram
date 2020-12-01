@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
 } from '@angular/core'
 
 @Component({
@@ -14,6 +16,8 @@ import {
 export class PrimaryButtonComponent implements OnInit {
   @Input() status: 'default' | 'loading' = 'default'
   @Input() value = ''
+
+  @Output() readonly clickEvent = new EventEmitter()
 
   rippleColor = '#00000020'
 
