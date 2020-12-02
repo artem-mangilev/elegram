@@ -18,6 +18,7 @@ import { AuthService } from '../auth.service'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhoneStepComponent implements OnInit {
+  buttonStatus = 'default'
   phone = ''
   phoneInputLabel = 'Phone Number'
   phoneInputStatus = 'default'
@@ -34,6 +35,8 @@ export class PhoneStepComponent implements OnInit {
   ngOnInit(): void {}
 
   onButtonClick(): void {
+    this.buttonStatus = 'loading'
+
     this.authService
       .setPhoneNumber(this.phone)
       .then(() => {
@@ -41,9 +44,12 @@ export class PhoneStepComponent implements OnInit {
       })
       .catch((error) => {
         console.log(error)
+
         this.phoneInputLabel = error.error_message
         this.phoneInputStatus = 'error'
         this.input.nativeElement.focus()
+
+        this.buttonStatus = 'default'
 
         // TODO: detect changes automatically if it's possible
         this.cd.detectChanges()
