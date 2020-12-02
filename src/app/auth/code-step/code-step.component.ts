@@ -6,6 +6,7 @@ import {
   ViewChild,
   AfterViewInit,
   ElementRef,
+  ChangeDetectorRef,
 } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 
@@ -38,6 +39,7 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('trackingMonkeyContainer') trackingMonkeyContainer: ElementRef
 
   constructor(
+    private cd: ChangeDetectorRef,
     private route: ActivatedRoute,
     private authService: AuthService
   ) {}
@@ -105,9 +107,17 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
     })
 
     if (value.length === 5) {
-      this.authService.signIn(value).then(() => {
-        console.log('signed in')
-      })
+      this.authService
+        .signIn(value)
+        .then(() => {
+          console.log('signed in')
+        })
+        .catch((error) => {
+          this.inputLabel = error.error_message
+          this.inputStatus = 'error'
+
+          this.cd.detectChanges()
+        })
     }
   }
 }
