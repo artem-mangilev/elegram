@@ -1,6 +1,8 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  ElementRef,
   OnInit,
   ViewChild,
 } from '@angular/core'
@@ -20,9 +22,10 @@ export class PhoneStepComponent implements OnInit {
   phoneInputLabel = 'Phone Number'
   phoneInputStatus = 'default'
 
-  @ViewChild('input') input
+  @ViewChild('input') input: ElementRef
 
   constructor(
+    private cd: ChangeDetectorRef,
     private phoneService: PhoneService,
     private authService: AuthService,
     private router: Router
@@ -40,6 +43,10 @@ export class PhoneStepComponent implements OnInit {
         console.log(error)
         this.phoneInputLabel = error.error_message
         this.phoneInputStatus = 'error'
+        this.input.nativeElement.focus()
+
+        // TODO: detect changes automatically if it's possible
+        this.cd.detectChanges()
       })
   }
 
