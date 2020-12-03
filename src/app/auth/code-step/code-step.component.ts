@@ -8,7 +8,7 @@ import {
   ElementRef,
   ChangeDetectorRef,
 } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 
 import { Subscription } from 'rxjs'
 
@@ -41,6 +41,7 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private cd: ChangeDetectorRef,
     private route: ActivatedRoute,
+    private router: Router,
     private authService: AuthService
   ) {}
 
@@ -110,7 +111,7 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
       this.authService
         .signIn(value)
         .then(() => {
-          console.log('signed in')
+          this.router.navigate(['/password'])
         })
         .catch((error) => {
           this.inputLabel = error.error_message
