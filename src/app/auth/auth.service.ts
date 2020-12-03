@@ -4,6 +4,10 @@ import { MTProto } from '@mtproto/core'
 
 import { AppConfig } from '../../environments/environment'
 
+interface SentCode {
+  phone_code_hash: string
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -28,7 +32,7 @@ export class AuthService {
           _: 'codeSettings',
         },
       })
-      .then((response) => {
+      .then((response: SentCode) => {
         console.log(response)
 
         this.phoneNumber = internationalPhoneNumber
