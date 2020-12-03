@@ -9,7 +9,8 @@ import { AuthRoutingModule } from './auth-routing.module'
 import { PhoneStepComponent } from './phone-step/phone-step.component'
 import { CountryDropdownComponent } from './country-dropdown/country-dropdown.component'
 import { PhoneMaskDirective } from './phone-step/phone-mask.directive'
-import { CodeStepComponent } from './code-step/code-step.component'
+import { CodeStepComponent } from './code-step/code-step.component';
+import { PasswordStepComponent } from './password-step/password-step.component'
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CodeStepComponent } from './code-step/code-step.component'
     CountryDropdownComponent,
     PhoneMaskDirective,
     CodeStepComponent,
+    PasswordStepComponent,
   ],
   imports: [CommonModule, SharedModule, AuthRoutingModule, MatCheckboxModule],
 })
