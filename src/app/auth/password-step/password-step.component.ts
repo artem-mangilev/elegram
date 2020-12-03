@@ -7,6 +7,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PasswordStepComponent implements OnInit {
+  inputLabel = 'Password'
+
   constructor() {}
 
   ngOnInit(): void {}
