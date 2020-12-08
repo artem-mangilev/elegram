@@ -20,36 +20,30 @@ export class AuthService {
     this.mtproto = new MTProto({
       api_id: AppConfig.apiId,
       api_hash: AppConfig.apiHash,
-      test: false,
+      test: true,
     })
   }
 
-  setPhoneNumber(internationalPhoneNumber: string): Promise<unknown> {
-    return this.mtproto
-      .call('auth.sendCode', {
-        phone_number: internationalPhoneNumber,
-        settings: {
-          _: 'codeSettings',
-        },
-      })
-      .then((response: SentCode) => {
-        console.log(response)
+  async setPhoneNumber(internationalPhoneNumber: string): Promise<SentCode> {
+    const response = (await this.mtproto.call('auth.sendCode', {
+      phone_number: internationalPhoneNumber,
+      settings: {
+        _: 'codeSettings',
+      },
+    })) as SentCode
 
-        this.phoneNumber = internationalPhoneNumber
-        this.phoneCodeHash = response.phone_code_hash
-      })
+    this.phoneNumber = internationalPhoneNumber
+    this.phoneCodeHash = response.phone_code_hash
+
+    return response
   }
 
-  signIn(phoneCode: string): Promise<unknown> {
-    return this.mtproto
-      .call('auth.signIn', {
-        phone_code: phoneCode,
-        phone_number: this.phoneNumber,
-        phone_code_hash: this.phoneCodeHash,
-      })
-      .then((response) => {
-        console.log(response)
-      })
+  async signIn(phoneCode: string): Promise<unknown> {
+    return await this.mtproto.call('auth.signIn', {
+      phone_code: phoneCode,
+      phone_number: this.phoneNumber,
+      phone_code_hash: this.phoneCodeHash,
+    })
   }
 
   async checkPassword(password: string): Promise<unknown> {
