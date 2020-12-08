@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 
-import { MTProto } from '@mtproto/core'
+import { getSRPParams, MTProto } from '@mtproto/core'
 
 import { AppConfig } from '../../environments/environment'
 
@@ -20,7 +20,7 @@ export class AuthService {
     this.mtproto = new MTProto({
       api_id: AppConfig.apiId,
       api_hash: AppConfig.apiHash,
-      test: true,
+      test: false,
     })
   }
 
@@ -50,5 +50,31 @@ export class AuthService {
       .then((response) => {
         console.log(response)
       })
+  }
+
+  async checkPassword(password: string): Promise<unknown> {
+    const { srp_id, current_algo, srp_B } = await this.mtproto.call(
+      'account.getPassword',
+      {}
+    )
+    const { g, p, salt1, salt2 } = current_algo
+
+    const { A, M1 } = await getSRPParams({
+      g,
+      p,
+      salt1,
+      salt2,
+      gB: srp_B,
+      password,
+    })
+
+    return await this.mtproto.call('auth.checkPassword', {
+      password: {
+        _: 'inputCheckPasswordSRP',
+        srp_id,
+        A,
+        M1,
+      },
+    })
   }
 }

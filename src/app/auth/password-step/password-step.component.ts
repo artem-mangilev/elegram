@@ -8,6 +8,7 @@ import {
 } from '@angular/core'
 
 import lottie, { AnimationItem } from 'lottie-web'
+import { AuthService } from '../auth.service'
 
 @Component({
   selector: 'app-password-step',
@@ -17,13 +18,14 @@ import lottie, { AnimationItem } from 'lottie-web'
 })
 export class PasswordStepComponent implements OnInit, AfterViewInit {
   inputLabel = 'Password'
+  password = ''
 
   private monkeyAnimation: AnimationItem
   private monkeyAnimationDurationMiddle = 33 / 2
 
   @ViewChild('monkeyContainer') monkeyContainer: ElementRef
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
 
@@ -48,5 +50,15 @@ export class PasswordStepComponent implements OnInit, AfterViewInit {
       [this.monkeyAnimationDurationMiddle, 1],
       true
     )
+  }
+
+  onInput(value: string): void {
+    this.password = value
+  }
+
+  onNextButtonClick(): void {
+    this.authService.checkPassword(this.password).then((result) => {
+      console.log(result)
+    })
   }
 }
