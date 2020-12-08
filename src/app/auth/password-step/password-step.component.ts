@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core'
 
-import lottie from 'lottie-web'
+import lottie, { AnimationItem } from 'lottie-web'
 
 @Component({
   selector: 'app-password-step',
@@ -18,30 +18,37 @@ import lottie from 'lottie-web'
 export class PasswordStepComponent implements OnInit, AfterViewInit {
   inputLabel = 'Password'
 
+  private monkeyAnimation: AnimationItem
+  private monkeyAnimationDurationMiddle = 33 / 2
+
   @ViewChild('monkeyContainer') monkeyContainer: ElementRef
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  // animation flow:
-  // show Idle
-  // when user starts typing,
-  // wait for Idle end, remove it
-  // if password hidden, run Close to the middle and stop
-  // if input is clear and password is hidden, run Close from the middle to the end and stop
-  // if password shown, run CloseAndPeek to the end
-  // if input is clear and password is shown, run CloseAndPeekToIdle
-  // if input is not clear and password changed from hidden to shown, run Peek to the middle
-  // if input is not clear and password changed from shown to hidden, run Peek from middle to the end
-
   ngAfterViewInit(): void {
-    lottie.loadAnimation({
+    this.monkeyAnimation = lottie.loadAnimation({
       container: this.monkeyContainer.nativeElement,
       renderer: 'svg',
-      loop: true,
+      loop: false,
       autoplay: true,
-      path: '../../../assets/monkey/TwoFactorSetupMonkeyIdle.json',
+      initialSegment: [0, 1],
+      path: '../../../assets/monkey/TwoFactorSetupMonkeyPeek.json',
     })
+  }
+
+  onPasswordShow(): void {
+    this.monkeyAnimation.playSegments(
+      [1, this.monkeyAnimationDurationMiddle],
+      true
+    )
+  }
+
+  onPasswordHide(): void {
+    this.monkeyAnimation.playSegments(
+      [this.monkeyAnimationDurationMiddle, 1],
+      true
+    )
   }
 }
