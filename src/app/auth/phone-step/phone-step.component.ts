@@ -40,7 +40,7 @@ export class PhoneStepComponent implements OnInit {
     this.authService
       .setPhoneNumber(this.phone)
       .then(() => {
-        this.router.navigate(['/code', this.phone])
+        this.router.navigate(['/auth/code', this.phone])
       })
       .catch((error) => {
         console.log(error)
