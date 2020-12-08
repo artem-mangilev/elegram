@@ -30,9 +30,7 @@ export class PasswordStepComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.monkeyAnimation = lottie.loadAnimation({
       container: this.monkeyContainer.nativeElement,
-      renderer: 'svg',
       loop: false,
-      autoplay: true,
       initialSegment: [0, 1],
       path: '../../../assets/monkey/TwoFactorSetupMonkeyPeek.json',
     })
