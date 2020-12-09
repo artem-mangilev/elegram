@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core'
 
 import { getSRPParams, MTProto } from '@mtproto/core'
+import { MTProtoCoreService } from '../../app/shared/mtproto-core/mtproto-core.service'
 import { SentCode } from '../../app/shared/mtproto-core/mtproto-core'
-
-import { AppConfig } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root',
@@ -13,12 +12,8 @@ export class AuthService {
   private phoneNumber: string
   private phoneCodeHash: string
 
-  constructor() {
-    this.mtproto = new MTProto({
-      api_id: AppConfig.apiId,
-      api_hash: AppConfig.apiHash,
-      test: true,
-    })
+  constructor(mtprotoService: MTProtoCoreService) {
+    this.mtproto = mtprotoService.instance
   }
 
   async setPhoneNumber(internationalPhoneNumber: string): Promise<SentCode> {
