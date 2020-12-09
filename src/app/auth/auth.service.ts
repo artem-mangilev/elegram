@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core'
 
 import { getSRPParams, MTProto } from '@mtproto/core'
+import { SentCode } from '../../app/shared/mtproto-core/mtproto-core'
 
 import { AppConfig } from '../../environments/environment'
-
-interface SentCode {
-  phone_code_hash: string
-}
 
 @Injectable({
   providedIn: 'root',
