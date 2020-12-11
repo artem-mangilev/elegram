@@ -1,0 +1,17 @@
+<div class="image-container">
+  <!-- avatar picker -->
+</div>
+
+<h1 class="title">Your Name</h1>
+
+<p class="subtitle">Enter your name and add a profile picture.</p>
+
+<app-input-field class="name-input" [label]="'Name'">
+  <input appInputRef id="name" />
+</app-input-field>
+
+<app-input-field class="last-name-input" [label]="'Last Name (optional)'">
+  <input appInputRef id="last-name" />
+</app-input-field>
+
+<app-primary-button [value]="'start messaging'"></app-primary-button>
