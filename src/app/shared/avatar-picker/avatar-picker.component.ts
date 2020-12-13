@@ -14,8 +14,8 @@ export class AvatarPickerComponent implements OnInit {
   ngOnInit(): void {}
 
   onFileInput(file: File): void {
-    console.log(file)
-
-    const dialogRef = this.dialog.open(AvatarPickerDialogComponent)
+    const dialogRef = this.dialog.open(AvatarPickerDialogComponent, {
+      data: { avatar: file },
+    })
   }
 }
