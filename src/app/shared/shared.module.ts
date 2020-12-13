@@ -12,6 +12,7 @@ import { PrimaryButtonComponent } from './primary-button/primary-button.componen
 import { InputRefDirective } from './input-field/input-ref.directive'
 import { CheckboxComponent } from './checkbox/checkbox.component'
 import { OnlyNumbersDirective } from './only-numbers.directive'
+import { AvatarPickerComponent } from './avatar-picker/avatar-picker.component'
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { OnlyNumbersDirective } from './only-numbers.directive'
     InputRefDirective,
     CheckboxComponent,
     OnlyNumbersDirective,
+    AvatarPickerComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { OnlyNumbersDirective } from './only-numbers.directive'
     PrimaryButtonComponent,
     CheckboxComponent,
     OnlyNumbersDirective,
+    AvatarPickerComponent,
   ],
 })
 export class SharedModule {}
