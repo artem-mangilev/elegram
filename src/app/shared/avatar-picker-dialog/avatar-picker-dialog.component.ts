@@ -4,10 +4,11 @@ import {
   Component,
   ElementRef,
   Inject,
-  OnInit,
+  OnDestroy,
   ViewChild,
 } from '@angular/core'
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { fromEvent, Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-avatar-picker-dialog',
@@ -15,20 +16,25 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog'
   styleUrls: ['./avatar-picker-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AvatarPickerDialogComponent implements OnInit, AfterViewInit {
+export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
+  private fr = new FileReader()
+  private fileLoads$ = fromEvent(this.fr, 'load')
+  private fileLoadsSub: Subscription
+
   @ViewChild('avatar') avatarElementRef: ElementRef<HTMLImageElement>
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { avatar: File }) {}
 
-  ngOnInit(): void {}
-
   ngAfterViewInit(): void {
-    const fr = new FileReader()
-    fr.onload = () => {
+    this.fileLoadsSub = this.fileLoads$.subscribe(() => {
       const avatarElement = this.avatarElementRef.nativeElement
-      console.log(fr.result)
-      avatarElement.src = <string>fr.result
-    }
-    fr.readAsDataURL(this.data.avatar)
+      avatarElement.src = <string>this.fr.result
+    })
+
+    this.fr.readAsDataURL(this.data.avatar)
+  }
+
+  ngOnDestroy(): void {
+    this.fileLoadsSub.unsubscribe()
   }
 }
