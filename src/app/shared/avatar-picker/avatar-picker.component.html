@@ -1,4 +1,9 @@
 <label for="upload-avatar">
   <i class="icon-cameraadd icon"></i>
 </label>
-<input type="file" accept=".png,.jpg,.jpeg" id="upload-avatar" />
+<input
+  type="file"
+  accept=".png,.jpg,.jpeg"
+  id="upload-avatar"
+  (change)="onFileInput($event.target.files[0])"
+/>

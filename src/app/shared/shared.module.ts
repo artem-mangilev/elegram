@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms'
 
 import { MatRippleModule } from '@angular/material/core'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatDialogModule } from '@angular/material/dialog'
 
 import { TranslateModule } from '@ngx-translate/core'
 
@@ -31,6 +32,7 @@ import { AvatarPickerDialogComponent } from './avatar-picker-dialog/avatar-picke
     FormsModule,
     MatRippleModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
   ],
   exports: [
     TranslateModule,

@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
+import { AvatarPickerDialogComponent } from '../avatar-picker-dialog/avatar-picker-dialog.component'
 
 @Component({
   selector: 'app-avatar-picker',
@@ -7,7 +9,13 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AvatarPickerComponent implements OnInit {
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
+
+  onFileInput(file: File): void {
+    console.log(file)
+
+    const dialogRef = this.dialog.open(AvatarPickerDialogComponent)
+  }
 }
