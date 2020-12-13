@@ -13,6 +13,7 @@ import { InputRefDirective } from './input-field/input-ref.directive'
 import { CheckboxComponent } from './checkbox/checkbox.component'
 import { OnlyNumbersDirective } from './only-numbers.directive'
 import { AvatarPickerComponent } from './avatar-picker/avatar-picker.component'
+import { AvatarPickerDialogComponent } from './avatar-picker-dialog/avatar-picker-dialog.component'
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AvatarPickerComponent } from './avatar-picker/avatar-picker.component'
     CheckboxComponent,
     OnlyNumbersDirective,
     AvatarPickerComponent,
+    AvatarPickerDialogComponent,
   ],
   imports: [
     CommonModule,
