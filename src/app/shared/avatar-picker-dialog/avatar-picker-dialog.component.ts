@@ -50,10 +50,16 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
     const containerMouseDown$ = fromEvent<MouseEvent>(container, 'mousedown')
     const containerMouseMove$ = fromEvent<MouseEvent>(container, 'mousemove')
     const containerMouseUp$ = fromEvent<MouseEvent>(container, 'mouseup')
-
     containerMouseDown$.subscribe(this.dragStart.bind(this))
     containerMouseMove$.subscribe(this.drag.bind(this))
     containerMouseUp$.subscribe(this.dragEnd.bind(this))
+
+    const containerTouchStart$ = fromEvent<TouchEvent>(container, 'touchstart')
+    const containerTouchMove$ = fromEvent<TouchEvent>(container, 'touchmove')
+    const containerTouchEnd$ = fromEvent<TouchEvent>(container, 'touchend')
+    containerTouchStart$.subscribe(this.dragStart.bind(this))
+    containerTouchMove$.subscribe(this.drag.bind(this))
+    containerTouchEnd$.subscribe(this.dragEnd.bind(this))
   }
 
   ngOnDestroy(): void {
