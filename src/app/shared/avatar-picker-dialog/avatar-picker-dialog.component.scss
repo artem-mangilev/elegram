@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+.avatar-container {
+  position: relative;
+}
+
+.cutbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5rem;
+  height: 5rem;
+  border: 2px solid white;
+}
+
+img {
+  user-select: none;
+  pointer-events: none;
+}
