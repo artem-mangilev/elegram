@@ -60,6 +60,9 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
     containerTouchStart$.subscribe(this.dragStart.bind(this))
     containerTouchMove$.subscribe(this.drag.bind(this))
     containerTouchEnd$.subscribe(this.dragEnd.bind(this))
+
+    // put cutbox in the middle
+    this.setTranslate(10, 10, this.cutboxElementRef.nativeElement)
   }
 
   ngOnDestroy(): void {
@@ -99,8 +102,35 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
         this.currentY = e.clientY - this.initialY
       }
 
+      if (this.checkLeftCollision()) {
+        this.currentX = 0
+      }
+
+      if (this.checkTopCollision()) {
+        this.currentY = 0
+      }
+
+      const avatarRect = this.avatarElementRef.nativeElement.getBoundingClientRect()
+      const cutboxRect = this.cutboxElementRef.nativeElement.getBoundingClientRect()
+
+      if (this.checkRightCollision()) {
+        this.currentX = avatarRect.width - cutboxRect.width
+      }
+
+      if (this.checkBottomCollision()) {
+        this.currentY = avatarRect.height - cutboxRect.height
+      }
+
       this.xOffset = this.currentX
       this.yOffset = this.currentY
+
+      console.log(`currentX: ${this.currentX}`)
+      console.log(`currentY: ${this.currentY}`)
+      console.log(`xOffset: ${this.xOffset}`)
+      console.log(`yOffset: ${this.yOffset}`)
+      console.log(`initialX: ${this.initialX}`)
+      console.log(`initialY: ${this.initialY}`)
+      console.log('-----------')
 
       this.setTranslate(
         this.currentX,
@@ -112,5 +142,24 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
 
   private setTranslate(xPos: number, yPos: number, el: HTMLElement) {
     el.style.transform = `translate(${xPos}px, ${yPos}px)`
+  }
+
+  private checkTopCollision(): boolean {
+    return this.currentY < 0
+  }
+  private checkLeftCollision(): boolean {
+    return this.currentX < 0
+  }
+
+  private checkRightCollision(): boolean {
+    const cutboxRect = this.cutboxElementRef.nativeElement.getBoundingClientRect()
+    const avatarRect = this.avatarElementRef.nativeElement.getBoundingClientRect()
+    return this.currentX + cutboxRect.width > avatarRect.width
+  }
+
+  private checkBottomCollision(): boolean {
+    const cutboxRect = this.cutboxElementRef.nativeElement.getBoundingClientRect()
+    const avatarRect = this.avatarElementRef.nativeElement.getBoundingClientRect()
+    return this.currentY + cutboxRect.height > avatarRect.height
   }
 }
