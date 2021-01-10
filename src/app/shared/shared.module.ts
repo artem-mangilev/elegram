@@ -15,6 +15,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component'
 import { OnlyNumbersDirective } from './only-numbers.directive'
 import { AvatarPickerComponent } from './avatar-picker/avatar-picker.component'
 import { AvatarPickerDialogComponent } from './avatar-picker-dialog/avatar-picker-dialog.component'
+import { IconButtonComponent } from './icon-button/icon-button.component'
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AvatarPickerDialogComponent } from './avatar-picker-dialog/avatar-picke
     OnlyNumbersDirective,
     AvatarPickerComponent,
     AvatarPickerDialogComponent,
+    IconButtonComponent,
   ],
   imports: [
     CommonModule,
