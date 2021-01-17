@@ -35,7 +35,10 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
   avatarContainerElementRef: ElementRef<HTMLDivElement>
   @ViewChild('cutbox') cutboxElementRef: ElementRef<HTMLImageElement>
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { avatar: File }) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA)
+    public data: { avatar: File; canvas: HTMLCanvasElement }
+  ) {}
 
   ngAfterViewInit(): void {
     this.fileLoadsSub = this.fileLoads$.subscribe(() => {
@@ -67,6 +70,24 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
 
   ngOnDestroy(): void {
     this.fileLoadsSub.unsubscribe()
+  }
+
+  onIconButtonMouseDown(): void {
+    const ctx = this.data.canvas.getContext('2d')
+    const avatar = this.avatarElementRef.nativeElement
+    const cutboxRect = this.cutboxElementRef.nativeElement.getBoundingClientRect()
+
+    ctx.drawImage(
+      avatar,
+      this.currentX,
+      this.currentY,
+      cutboxRect.width,
+      cutboxRect.height,
+      0,
+      0,
+      this.data.canvas.width,
+      this.data.canvas.height
+    )
   }
 
   private dragStart(e: MouseEvent & TouchEvent): void {

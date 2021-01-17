@@ -1,6 +1,13 @@
+<div>
+  <i class="close icon-close"></i>
+  Drag to Reposition
+</div>
+
 <div #avatarContainer class="avatar-container">
   <img #avatar />
   <div #cutbox class="cutbox"></div>
 </div>
 
 <app-icon-button [iconClassName]="'icon-check'"></app-icon-button>
+
+<button (mousedown)="onIconButtonMouseDown()">Кнопочка с иконкой</button>

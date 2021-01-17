@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 import { AvatarPickerDialogComponent } from '../avatar-picker-dialog/avatar-picker-dialog.component'
 
@@ -9,13 +15,18 @@ import { AvatarPickerDialogComponent } from '../avatar-picker-dialog/avatar-pick
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AvatarPickerComponent implements OnInit {
+  @ViewChild('canvas') canvasElementRef: ElementRef<HTMLCanvasElement>
+
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
   onFileInput(file: File): void {
     const dialogRef = this.dialog.open(AvatarPickerDialogComponent, {
-      data: { avatar: file },
+      data: {
+        avatar: file,
+        canvas: this.canvasElementRef.nativeElement,
+      },
     })
   }
 }
