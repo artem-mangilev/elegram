@@ -4,9 +4,8 @@ import {
   Input,
   OnInit,
   Output,
+  EventEmitter
 } from '@angular/core'
-import { EventEmitter } from 'events'
-
 @Component({
   selector: 'app-icon-button',
   templateUrl: './icon-button.component.html',
@@ -18,7 +17,7 @@ export class IconButtonComponent implements OnInit {
 
   @Output() readonly mouseDownEvent = new EventEmitter()
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

@@ -8,6 +8,4 @@
   <div #cutbox class="cutbox"></div>
 </div>
 
-<app-icon-button [iconClassName]="'icon-check'"></app-icon-button>
-
-<button (mousedown)="onIconButtonMouseDown()">Кнопочка с иконкой</button>
+<app-icon-button [iconClassName]="'icon-check'" (mouseDownEvent)="onIconButtonMouseDown()"></app-icon-button>
