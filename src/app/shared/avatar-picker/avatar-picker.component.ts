@@ -16,6 +16,7 @@ import { AvatarPickerDialogComponent } from '../avatar-picker-dialog/avatar-pick
 })
 export class AvatarPickerComponent implements OnInit {
   @ViewChild('canvas') canvasElementRef: ElementRef<HTMLCanvasElement>
+  @ViewChild('fileInput') fileInputElementRef: ElementRef<HTMLInputElement>
 
   constructor(public dialog: MatDialog) { }
 
@@ -32,5 +33,7 @@ export class AvatarPickerComponent implements OnInit {
     dialogRef.componentInstance.imageSetEvent.subscribe(() => {
       dialogRef.close()
     })
+
+    this.fileInputElementRef.nativeElement.value = null
   }
 }
