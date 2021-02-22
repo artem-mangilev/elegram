@@ -6,6 +6,7 @@ import {
   Inject,
   OnDestroy,
   ViewChild,
+  EventEmitter
 } from '@angular/core'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { from, fromEvent, Subscription } from 'rxjs'
@@ -22,12 +23,14 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
   private fileLoads$ = fromEvent(this.fr, 'load')
   private fileLoadsSub: Subscription
 
+  private readonly defaultX = 10
+  private readonly defaultY = 10
   private initialX: number
   private initialY: number
   private xOffset = 0
   private yOffset = 0
-  private currentX: number
-  private currentY: number
+  private currentX: number = this.defaultX
+  private currentY: number = this.defaultY
   private isCutboxActive: boolean
 
   @ViewChild('avatar') avatarElementRef: ElementRef<HTMLImageElement>
@@ -35,10 +38,12 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
   avatarContainerElementRef: ElementRef<HTMLDivElement>
   @ViewChild('cutbox') cutboxElementRef: ElementRef<HTMLImageElement>
 
+  readonly imageSetEvent = new EventEmitter()
+
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: { avatar: File; canvas: HTMLCanvasElement }
-  ) {}
+  ) { }
 
   ngAfterViewInit(): void {
     this.fileLoadsSub = this.fileLoads$.subscribe(() => {
@@ -64,8 +69,8 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
     containerTouchMove$.subscribe(this.drag.bind(this))
     containerTouchEnd$.subscribe(this.dragEnd.bind(this))
 
-    // put cutbox in the middle
-    this.setTranslate(10, 10, this.cutboxElementRef.nativeElement)
+    // TODO: put cutbox in the middle
+    this.setTranslate(this.defaultX, this.defaultY, this.cutboxElementRef.nativeElement)
   }
 
   ngOnDestroy(): void {
@@ -88,6 +93,8 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
       this.data.canvas.width,
       this.data.canvas.height
     )
+
+    this.imageSetEvent.emit()
   }
 
   private dragStart(e: MouseEvent & TouchEvent): void {
