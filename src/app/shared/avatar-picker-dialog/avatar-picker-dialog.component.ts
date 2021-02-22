@@ -152,14 +152,6 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
       this.xOffset = this.currentX
       this.yOffset = this.currentY
 
-      console.log(`currentX: ${this.currentX}`)
-      console.log(`currentY: ${this.currentY}`)
-      console.log(`xOffset: ${this.xOffset}`)
-      console.log(`yOffset: ${this.yOffset}`)
-      console.log(`initialX: ${this.initialX}`)
-      console.log(`initialY: ${this.initialY}`)
-      console.log('-----------')
-
       this.setTranslate(
         this.currentX,
         this.currentY,
