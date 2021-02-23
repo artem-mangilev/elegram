@@ -82,12 +82,15 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
     const avatar = this.avatarElementRef.nativeElement
     const cutboxRect = this.cutboxElementRef.nativeElement.getBoundingClientRect()
 
+    const sizeRatioX = avatar.naturalWidth / avatar.width
+    const sizeRatioY = avatar.naturalHeight / avatar.height
+
     ctx.drawImage(
       avatar,
-      this.currentX,
-      this.currentY,
-      cutboxRect.width,
-      cutboxRect.height,
+      this.currentX * sizeRatioX,
+      this.currentY * sizeRatioY,
+      cutboxRect.width * sizeRatioX,
+      cutboxRect.height * sizeRatioY,
       0,
       0,
       this.data.canvas.width,
@@ -148,6 +151,9 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
       if (this.checkBottomCollision()) {
         this.currentY = avatarRect.height - cutboxRect.height
       }
+
+      console.log(`X: ${this.currentX}`);
+      console.log(`Y: ${this.currentY}`);
 
       this.xOffset = this.currentX
       this.yOffset = this.currentY
