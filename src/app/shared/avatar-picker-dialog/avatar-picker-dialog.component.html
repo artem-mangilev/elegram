@@ -1,11 +1,18 @@
-<div>
+<div class="col col-left">
   <i class="close icon-close"></i>
-  Drag to Reposition
 </div>
 
-<div #avatarContainer class="avatar-container">
-  <img #avatar />
-  <div #cutbox class="cutbox"></div>
+<div class="col col-center">
+  <h3>Drag to Reposition</h3>
+
+  <div #avatarContainer class="avatar-container">
+    <img #avatar />
+    <div #cutbox class="cutbox"></div>
+  </div>  
 </div>
 
-<app-icon-button [iconClassName]="'icon-check'" (mouseDownEvent)="onIconButtonMouseDown()"></app-icon-button>
+<div class="col col-right">
+  <app-icon-button [iconClassName]="'icon-check'" (mouseDownEvent)="onIconButtonMouseDown()"></app-icon-button>
+</div>
+
+

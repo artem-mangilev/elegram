@@ -1,17 +1,46 @@
 :host {
-  display: block;
-  padding: 1rem 3rem;
+  display: flex;
+  height: 33.4rem;
+  padding: 1.3rem 0;
   background-color: #fff;
+  border-radius: 2%;
+}
+
+h3 {
+  margin-top: 0;
+  margin-left: 0.7rem;
+  position: absolute;
+  top: -3.4rem;
+}
+
+.col {
+  &-left {
+    display: flex;
+    justify-content: center;
+    width: 4.7rem;
+  }
+
+  &-center {
+    align-self: center;
+    position: relative;
+  }
+
+  &-right {
+    align-self: flex-end;
+    width: 4.7rem;
+  }
 }
 
 .close {
-  width: 2rem;
-  height: 2rem;
+  display: block;
+  font-size: 1.5rem;
 }
 
 .avatar-container {
+  height: 24rem;
   position: relative;
   overflow: hidden;
+  border-radius: 2%;
 }
 
 .cutbox {
