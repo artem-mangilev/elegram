@@ -39,6 +39,7 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
   @ViewChild('cutbox') cutboxElementRef: ElementRef<HTMLImageElement>
 
   readonly imageSetEvent = new EventEmitter()
+  readonly closeEvent = new EventEmitter()
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
@@ -98,6 +99,10 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
     )
 
     this.imageSetEvent.emit()
+  }
+
+  onClose(): void {
+    this.closeEvent.emit()
   }
 
   private dragStart(e: MouseEvent & TouchEvent): void {

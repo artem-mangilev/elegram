@@ -34,6 +34,10 @@ export class AvatarPickerComponent implements OnInit {
       dialogRef.close()
     })
 
+    dialogRef.componentInstance.closeEvent.subscribe(() => {
+      dialogRef.close()
+    })
+
     this.fileInputElementRef.nativeElement.value = null
   }
 }
