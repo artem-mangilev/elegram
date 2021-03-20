@@ -23,14 +23,12 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
   private fileLoads$ = fromEvent(this.fr, 'load')
   private fileLoadsSub: Subscription
 
-  private readonly defaultX = 10
-  private readonly defaultY = 10
   private initialX: number
   private initialY: number
-  private xOffset = 0
-  private yOffset = 0
-  private currentX: number = this.defaultX
-  private currentY: number = this.defaultY
+  private xOffset: number
+  private yOffset: number
+  private currentX: number
+  private currentY: number
   private isCutboxActive: boolean
 
   @ViewChild('avatar') avatarElementRef: ElementRef<HTMLImageElement>
@@ -70,8 +68,23 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
     containerTouchMove$.subscribe(this.drag.bind(this))
     containerTouchEnd$.subscribe(this.dragEnd.bind(this))
 
-    // TODO: put cutbox in the middle
-    this.setTranslate(this.defaultX, this.defaultY, this.cutboxElementRef.nativeElement)
+    // put cutbox in the middle
+    const avatarElement = this.avatarElementRef.nativeElement
+    avatarElement.onload = () => {
+      const imageWidth = avatarElement.width
+      const imageHeight = avatarElement.height
+
+      // Assume width and height the same
+      const cutboxSize = this.cutboxElementRef.nativeElement.clientWidth
+
+      const cutboxDefaultX = (imageWidth / 2) - (cutboxSize / 2);
+      const cutboxDefaultY = (imageHeight / 2) - (cutboxSize / 2);
+
+      this.xOffset = cutboxDefaultX
+      this.yOffset = cutboxDefaultY
+
+      this.setTranslate(cutboxDefaultX, cutboxDefaultY, this.cutboxElementRef.nativeElement)
+    }
   }
 
   ngOnDestroy(): void {
