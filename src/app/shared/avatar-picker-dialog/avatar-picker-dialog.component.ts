@@ -31,6 +31,9 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
   private currentY: number
   private isCutboxActive: boolean
 
+  private cutboxScaleRatio = 1
+  private cutboxDefaultSize: number
+
   @ViewChild('avatar') avatarElementRef: ElementRef<HTMLImageElement>
   @ViewChild('avatarContainer')
   avatarContainerElementRef: ElementRef<HTMLDivElement>
@@ -85,6 +88,8 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
 
       this.setTranslate(cutboxDefaultX, cutboxDefaultY, this.cutboxElementRef.nativeElement)
     }
+
+    this.cutboxDefaultSize = this.cutboxElementRef.nativeElement.clientWidth
   }
 
   ngOnDestroy(): void {
@@ -116,6 +121,20 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
 
   onClose(): void {
     this.closeEvent.emit()
+  }
+
+  onCutboxWheel(e: WheelEvent): void {
+    const cutbox = this.cutboxElementRef.nativeElement
+
+    if (e.deltaY < 0) {
+      // scroll up
+      this.cutboxScaleRatio += 0.1
+    } else if (e.deltaY > 0) {
+      // scroll down
+      this.cutboxScaleRatio -= 0.1
+    }
+
+    this.scale(this.cutboxDefaultSize, this.cutboxScaleRatio, cutbox)
   }
 
   private dragStart(e: MouseEvent & TouchEvent): void {
@@ -184,8 +203,13 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
     }
   }
 
-  private setTranslate(xPos: number, yPos: number, el: HTMLElement) {
-    el.style.transform = `translate(${xPos}px, ${yPos}px)`
+  private scale(size: number, ratio: number, el: HTMLElement): void {
+    el.style.width = `${size * ratio}px`
+    el.style.height = `${size * ratio}px`
+  }
+
+  private setTranslate(xPos: number, yPos: number, el: HTMLElement): void {
+    this.applyTransform(`translate(${xPos}px, ${yPos}px)`, el)
   }
 
   private checkTopCollision(): boolean {
@@ -205,5 +229,19 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
     const cutboxRect = this.cutboxElementRef.nativeElement.getBoundingClientRect()
     const avatarRect = this.avatarElementRef.nativeElement.getBoundingClientRect()
     return this.currentY + cutboxRect.height > avatarRect.height
+  }
+
+  // maybe will needed later if I decide to use transform: scale() for scaling
+  private applyTransform(transform: string, element: HTMLElement): void {
+    const transformRuleCleanName = transform.match(/[a-z]+(?=\()/)[0]
+    const transformRuleRegex = new RegExp(`${transformRuleCleanName}\\(.+?\\)`)
+
+    // if such transform exists, replace it with new,
+    if (element.style.transform.includes(transformRuleCleanName)) {
+      element.style.transform = element.style.transform.replace(transformRuleRegex, transform)
+    } // otherwise add new transform
+    else {
+      element.style.transform += ` ${transform}`
+    }
   }
 }
