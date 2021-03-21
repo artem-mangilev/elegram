@@ -32,7 +32,10 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
   private isCutboxActive: boolean
 
   private cutboxScaleRatio = 1
+  private readonly minCutboxScaleRatio = 0.4
+  private readonly cutboxScaleRatioStep = 0.1
   private cutboxDefaultSize: number
+  private cutboxScaleStep: number
 
   @ViewChild('avatar') avatarElementRef: ElementRef<HTMLImageElement>
   @ViewChild('avatarContainer')
@@ -90,6 +93,7 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
     }
 
     this.cutboxDefaultSize = this.cutboxElementRef.nativeElement.clientWidth
+    this.cutboxScaleStep = this.cutboxDefaultSize * this.cutboxScaleRatioStep
   }
 
   ngOnDestroy(): void {
@@ -126,12 +130,27 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
   onCutboxWheel(e: WheelEvent): void {
     const cutbox = this.cutboxElementRef.nativeElement
 
+    // TODO: I think there is a better solution to undo changes
+    const prevCutboxScaleRatio = this.cutboxScaleRatio
+    const prevXOffset = this.xOffset
+    const prevYOffset = this.yOffset
+
     if (e.deltaY < 0) {
       // scroll up
-      this.cutboxScaleRatio += 0.1
+      this.cutboxScaleRatio += this.cutboxScaleRatioStep
+
+      this.xOffset = this.xOffset - (this.cutboxScaleStep / 2)
+      this.yOffset = this.yOffset - (this.cutboxScaleStep / 2)
     } else if (e.deltaY > 0) {
       // scroll down
-      this.cutboxScaleRatio -= 0.1
+      if (this.minCutboxScaleRatio === +this.cutboxScaleRatio.toPrecision(2)) {
+        return
+      }
+
+      this.cutboxScaleRatio -= this.cutboxScaleRatioStep
+
+      this.xOffset = this.xOffset + (this.cutboxScaleStep / 2)
+      this.yOffset = this.yOffset + (this.cutboxScaleStep / 2)
     }
 
     const newSize = this.cutboxDefaultSize * this.cutboxScaleRatio
@@ -141,14 +160,17 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
     const imageHeight = this.avatarElementRef.nativeElement.getBoundingClientRect().height
 
     const lowestSide = imageHeight <= imageWidth ? imageHeight : imageWidth
-
-    // TODO: it should resized with limit === lowest side
     if (newSize > lowestSide) {
       this.resize(lowestSide, cutbox)
+
+      this.cutboxScaleRatio = prevCutboxScaleRatio
+      this.xOffset = prevXOffset
+      this.yOffset = prevYOffset
     } else {
       this.resize(newSize, cutbox)
     }
 
+    this.setTranslate(this.xOffset, this.yOffset, cutbox)
   }
 
   private dragStart(e: MouseEvent & TouchEvent): void {
