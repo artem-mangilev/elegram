@@ -134,7 +134,21 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
       this.cutboxScaleRatio -= 0.1
     }
 
-    this.scale(this.cutboxDefaultSize, this.cutboxScaleRatio, cutbox)
+    const newSize = this.cutboxDefaultSize * this.cutboxScaleRatio
+
+    // check if new size smaller then width and height of container
+    const imageWidth = this.avatarElementRef.nativeElement.getBoundingClientRect().width
+    const imageHeight = this.avatarElementRef.nativeElement.getBoundingClientRect().height
+
+    const lowestSide = imageHeight <= imageWidth ? imageHeight : imageWidth
+
+    // TODO: it should resized with limit === lowest side
+    if (newSize > lowestSide) {
+      this.resize(lowestSide, cutbox)
+    } else {
+      this.resize(newSize, cutbox)
+    }
+
   }
 
   private dragStart(e: MouseEvent & TouchEvent): void {
@@ -203,9 +217,9 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
     }
   }
 
-  private scale(size: number, ratio: number, el: HTMLElement): void {
-    el.style.width = `${size * ratio}px`
-    el.style.height = `${size * ratio}px`
+  private resize(size: number, el: HTMLElement): void {
+    el.style.width = `${size}px`
+    el.style.height = `${size}px`
   }
 
   private setTranslate(xPos: number, yPos: number, el: HTMLElement): void {
