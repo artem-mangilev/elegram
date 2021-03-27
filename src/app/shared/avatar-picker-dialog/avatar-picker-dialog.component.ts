@@ -171,6 +171,10 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
     }
 
     this.setTranslate(this.xOffset, this.yOffset, cutbox)
+
+    // TODO: block resizing if bounary is violated 
+    // (or better - resize cutbox and keep it inside container
+    // until its size === container lowest side)
   }
 
   private dragStart(e: MouseEvent & TouchEvent): void {
@@ -265,6 +269,13 @@ export class AvatarPickerDialogComponent implements OnDestroy, AfterViewInit {
     const cutboxRect = this.cutboxElementRef.nativeElement.getBoundingClientRect()
     const avatarRect = this.avatarElementRef.nativeElement.getBoundingClientRect()
     return this.currentY + cutboxRect.height > avatarRect.height
+  }
+
+  private checkCollision(): boolean {
+    return this.checkTopCollision() &&
+      this.checkLeftCollision() &&
+      this.checkRightCollision() &&
+      this.checkBottomCollision()
   }
 
   // maybe will needed later if I decide to use transform: scale() for scaling
