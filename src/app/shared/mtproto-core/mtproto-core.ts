@@ -14,3 +14,13 @@ export interface CurrentAlgo {
   salt1: Uint8Array
   salt2: Uint8Array
 }
+
+export interface Authorization {
+  user: User
+  tmp_sessions: number
+}
+
+export interface User {
+  id: number
+  // TODO: fill this interface
+}

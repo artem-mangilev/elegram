@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core'
 
 import { getSRPParams, MTProto } from '@mtproto/core'
 import { MTProtoCoreService } from '../../app/shared/mtproto-core/mtproto-core.service'
-import { Password, SentCode } from '../../app/shared/mtproto-core/mtproto-core'
+import { Authorization, Password, SentCode } from '../../app/shared/mtproto-core/mtproto-core'
 
+// TODO: it's better to return observables form public methods
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private mtproto: MTProto
+
+  // TODO: probably it should be placed in active user model
   private phoneNumber: string
   private phoneCodeHash: string
 
@@ -62,5 +65,14 @@ export class AuthService {
         M1,
       },
     })
+  }
+
+  signUp(firstName: string, lastName: string): Promise<Authorization> {
+    return this.mtproto.call('auth.signUp', {
+      phone_number: this.phoneNumber,
+      phone_code_hash: this.phoneCodeHash,
+      first_name: firstName,
+      last_name: lastName
+    }) as Promise<Authorization>
   }
 }

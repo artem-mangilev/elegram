@@ -12,6 +12,7 @@ import { PhoneMaskDirective } from './phone-step/phone-mask.directive'
 import { CodeStepComponent } from './code-step/code-step.component';
 import { PasswordStepComponent } from './password-step/password-step.component';
 import { SignupStepComponent } from './signup-step/signup-step.component'
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -23,6 +24,6 @@ import { SignupStepComponent } from './signup-step/signup-step.component'
     PasswordStepComponent,
     SignupStepComponent,
   ],
-  imports: [CommonModule, SharedModule, AuthRoutingModule, MatCheckboxModule],
+  imports: [CommonModule, SharedModule, ReactiveFormsModule, AuthRoutingModule, MatCheckboxModule],
 })
-export class AuthModule {}
+export class AuthModule { }
