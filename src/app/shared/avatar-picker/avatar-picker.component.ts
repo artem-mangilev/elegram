@@ -3,7 +3,9 @@ import {
   Component,
   ElementRef,
   OnInit,
+  Output,
   ViewChild,
+  EventEmitter
 } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 import { AvatarPickerDialogComponent } from '../avatar-picker-dialog/avatar-picker-dialog.component'
@@ -17,6 +19,8 @@ import { AvatarPickerDialogComponent } from '../avatar-picker-dialog/avatar-pick
 export class AvatarPickerComponent implements OnInit {
   @ViewChild('canvas') canvasElementRef: ElementRef<HTMLCanvasElement>
   @ViewChild('fileInput') fileInputElementRef: ElementRef<HTMLInputElement>
+
+  @Output() readonly avatarSet = new EventEmitter<string>()
 
   constructor(public dialog: MatDialog) { }
 
@@ -32,6 +36,7 @@ export class AvatarPickerComponent implements OnInit {
 
     dialogRef.componentInstance.imageSetEvent.subscribe(() => {
       dialogRef.close()
+      this.avatarSet.emit(this.canvasElementRef.nativeElement.toDataURL())
     })
 
     dialogRef.componentInstance.closeEvent.subscribe(() => {
