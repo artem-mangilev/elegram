@@ -43,7 +43,7 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.sub = this.route.paramMap.subscribe((params) => {
@@ -108,16 +108,23 @@ export class CodeStepComponent implements OnInit, AfterViewInit, OnDestroy {
     })
 
     if (value.length === 5) {
-      this.authService.signIn(value).catch((error) => {
-        if (error.error_message === 'SESSION_PASSWORD_NEEDED') {
-          this.router.navigate(['/auth/password'])
-        } else {
-          this.inputLabel = error.error_message
-          this.inputStatus = 'error'
+      this.authService.signIn(value)
+        .then((data) => {
+          console.log(data)
+          if (data._ === 'auth.authorizationSignUpRequired') {
+            this.router.navigate(['/auth/signup'])
+          }
+        })
+        .catch((error) => {
+          if (error.error_message === 'SESSION_PASSWORD_NEEDED') {
+            this.router.navigate(['/auth/password'])
+          } else {
+            this.inputLabel = error.error_message
+            this.inputStatus = 'error'
 
-          this.cd.detectChanges()
-        }
-      })
+            this.cd.detectChanges()
+          }
+        })
     }
   }
 }
